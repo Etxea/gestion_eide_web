@@ -17,6 +17,7 @@
 {% endblock %}
 
 {% block nav %}
+{% if request.user.is_authenticated %}
 <ul class="nav navbar-nav">
 
     <li id="partes" class="dropdown">
@@ -40,10 +41,7 @@
         </ul>
     </li>
 </ul>
-
-
-
-
+{% endif %}
 {% endblock %}
 
 

@@ -23,9 +23,14 @@ from models import *
 from clientes.models import *
 from django.views.generic import ListView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class ParteLista(ListView):
     model=Parte
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ParteLista, self).dispatch(*args, **kwargs)
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(ParteLista, self).get_context_data(**kwargs)
@@ -40,6 +45,11 @@ class ParteListaCliente(ParteLista):
 
 class ParteNuevo(CreateView):
     model = Parte
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ParteNuevo, self).dispatch(*args, **kwargs)
+
     def get_initial(self):
         super(ParteNuevo, self).get_initial()
         user = self.request.user
@@ -48,6 +58,12 @@ class ParteNuevo(CreateView):
 
 class ParteNuevoCliente(CreateView):
     model = Parte
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ParteNuevoCliente, self).dispatch(*args, **kwargs)
+
+
     ##Recogemos los datos iniciales (clientes y user)
     def get_initial(self):
         super(ParteNuevoCliente, self).get_initial()
@@ -58,3 +74,7 @@ class ParteNuevoCliente(CreateView):
 
 class ParteEditar(UpdateView):
     model = Parte
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ParteEditar, self).dispatch(*args, **kwargs)
+
