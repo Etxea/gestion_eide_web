@@ -35,7 +35,6 @@ class Bono(models.Model):
     
     cliente = models.ForeignKey(Cliente)
     duracion= models.DecimalField(decimal_places=0,max_digits=3)
-    owner=models.ForeignKey(User)
     facturado = models.BooleanField(default=False)
     
     def __unicode__(self):
@@ -51,9 +50,13 @@ class Parte(models.Model):
     tipo		= models.DecimalField(decimal_places=0,max_digits=2,choices= TIPO_PARTE,default=1)
     cliente		= models.ForeignKey(Cliente)
     usuario		= models.ForeignKey(User, blank=True, null=True)
+    contabilizado = models.BooleanField(default=False)
     def __unicode__(self):
         return "%s-%s"%(self.cliente.nombre,self.fecha)
     def get_absolute_url(self):
-        return "/horas/partes/editar/%s/"%self.id
+        if self.contabilizado == True:
+            return "/horas/partes/ver/%s/"%self.id
+        else:
+            return "/horas/partes/editar/%s/"%self.id
 
 

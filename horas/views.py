@@ -21,10 +21,12 @@
 
 from models import *
 from clientes.models import *
-from django.views.generic import ListView, CreateView, UpdateView
+from django.contrib.auth.models import User
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.urlresolvers import reverse
 
 class ParteLista(ListView):
     model=Parte
@@ -36,6 +38,7 @@ class ParteLista(ListView):
         context = super(ParteLista, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['lista_clientes'] = Cliente.objects.all()
+        context['lista_usuarios'] = User.objects.all()
         return context
 
 class ParteListaCliente(ParteLista):
@@ -43,8 +46,20 @@ class ParteListaCliente(ParteLista):
         cliente = get_object_or_404(Cliente, pk=self.kwargs['cliente_id'])
         return Parte.objects.filter(cliente=cliente)    
 
+class ParteListaUsuario(ParteLista):
+    def get_queryset(self):
+        usuario = get_object_or_404(User, pk=self.kwargs['usuario_id'])
+        return Parte.objects.filter(usuario=usuario)    
+
+class MisPartes(ParteLista):
+    def get_queryset(self):
+        return Parte.objects.filter(usuario=self.request.user)    
+
+
 class ParteNuevo(CreateView):
     model = Parte
+    def get_success_url(self):
+        return reverse("partes_lista") 
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -56,14 +71,7 @@ class ParteNuevo(CreateView):
         self.initial = {"usuario":user.id}
         return self.initial
 
-class ParteNuevoCliente(CreateView):
-    model = Parte
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ParteNuevoCliente, self).dispatch(*args, **kwargs)
-
-
+class ParteNuevoCliente(ParteNuevo):
     ##Recogemos los datos iniciales (clientes y user)
     def get_initial(self):
         super(ParteNuevoCliente, self).get_initial()
@@ -78,3 +86,8 @@ class ParteEditar(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(ParteEditar, self).dispatch(*args, **kwargs)
 
+class ParteDetalle(DetailView):
+    model = Parte
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ParteDetalle, self).dispatch(*args, **kwargs)
