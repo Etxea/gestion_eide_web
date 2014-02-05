@@ -1,0 +1,30 @@
+{% extends "site_base.html"%}
+{% load url from future %}
+{% load i18n %}
+
+{% block body %}
+<a href="{% url 'partes_lista' %}">Horas</a>
+<table class="table">
+    <thead>
+        <tr>
+        <td>Id</td>
+        <td>Nombre</td>
+        <td>Email</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for cliente in object_list %}
+    <tr>
+    <td> <a href="{% url 'cliente_detalle' cliente.id %}">{{ cliente.id }}</a> </td>
+    <td>{{ cliente.nombre }}</td>
+    <td>{{ cliente.email }}</td>
+    <td>{{ cliente.telefono }}</td>
+    <td><a href="{% url 'parte_nuevo_cliente' 1 %}">Añadir horas</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    <a href="{% url 'cliente_nuevo' %}"><button>Nuevo</button></a>
+
+{% endblock %}

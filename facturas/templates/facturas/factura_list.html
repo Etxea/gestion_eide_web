@@ -1,0 +1,27 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+<table>
+    <thead>
+        <tr>
+        <td>Id</td>
+        <td>Nombre</td>
+        <td>Apellido</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for factura in object_list %}
+    <tr>
+    <td> <a href="{% url factura_detalle factura.id %}">{{ factura.id }}</a> </td>
+    <td>{{ factura.fecha }}</td>
+    <td>{{ factura.total }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    <a href="{% url factura_nueva %}">Nueva</a>
+
+{% endblock %}

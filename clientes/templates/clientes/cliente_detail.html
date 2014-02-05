@@ -1,0 +1,27 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+
+    <h1>{% trans "Cliente" %} {{object.id}}</h1>
+    <table class="table">
+		<tr>
+			<td>Nombre</td><td>{{object.nombre}}</td>
+		</tr>
+		<tr>
+			<td>Razón Social</td><td>{{object.razon_social}}</td>
+		</tr>
+		<tr>
+			<td>NIF</td><td>{{object.nif}}</td>
+		</tr>
+		<tr>
+			<td>Dirección</td><td>{{object.direccion}}</td>
+		</tr>
+		<tr>
+			<td>E-mail</td><td><a href="mailto:{{object.email}}">{{object.email}}</a></td>
+		</tr>
+
+    </table>
+
+{% endblock %}

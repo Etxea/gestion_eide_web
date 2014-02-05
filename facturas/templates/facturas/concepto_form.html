@@ -1,0 +1,14 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+
+{% block body %}
+
+    <h1>{% trans "Nuevo Concepto" %}</h1>
+
+    <form action="{% url concepto_nuevo %}" method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input class="submit btn-form" type="submit" value="{% trans 'Enviar' %}" />
+    </form>
+{% endblock %}

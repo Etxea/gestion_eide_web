@@ -1,0 +1,29 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+        <td>Id</td>
+        <td>Cliente</td>
+        <td>Fecha</td>
+        <td>Duracion</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for parte in object_list %}
+    <tr>
+    <td> <a href="{% url 'parte_detalle' parte.id %}">{{ parte.fecha }}</a> </td>
+    <td>{{ parte.cliente.name }}</td>
+    <td>{{ parte.fecha }}</td>
+    <td>{{ parte.duracion }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    <a href="{% url 'parte_nuevo' %}">Nuevo parte</a>
+
+{% endblock %}
