@@ -1,14 +1,17 @@
 {% extends "site_base.html"%}
-
+{% load bootstrap_tags %}
 {% load i18n %}
-
 
 {% block body %}
 
     <h1>{% trans "Nuevo Parte" %}</h1>
 
-    <form action="{% url 'parte_nuevo' %}" method="post">{% csrf_token %}
-      {{ form.as_p }}
-      <input class="submit btn-form" type="submit" value="{% trans 'Enviar' %}" />
+    <form action="" method="post">{% csrf_token %}
+      {{ form|as_bootstrap }}      
+      <br />
+      <div class="form-actions">
+      <a href="{% url 'partes_lista' %}" class="btn">Go back</a>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
     </form>
 {% endblock %}

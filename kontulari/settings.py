@@ -134,6 +134,7 @@ INSTALLED_APPS = [
     "account",
     "eventlog",
     "metron",
+    "django_forms_bootstrap",
     
     # project
     "kontulari",

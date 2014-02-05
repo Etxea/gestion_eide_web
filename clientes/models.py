@@ -21,7 +21,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Cliente(models.Model):
-    user = models.OneToOneField(User)
+    ##user = models.OneToOneField(User,blank=True)
     nombre=models.CharField(max_length=100)
     razon_social=models.CharField(max_length=250)
     NIF=models.CharField(max_length=100)
@@ -34,5 +34,5 @@ class Cliente(models.Model):
     def __unicode__(self):
         return self.nombre
     def get_absolute_url(self):
-        return "%s/"%self.id
+        return "/clientes/%s/"%self.id
 

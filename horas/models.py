@@ -29,8 +29,6 @@ TIPO_PARTE = (
     (2, _('Remoto'))
 )
 
-
-
 class Bono(models.Model):
     titulo = models.CharField(max_length=100)
     fecha = models.DateTimeField()
@@ -47,15 +45,15 @@ class Bono(models.Model):
 
 
 class Parte(models.Model):
-    fecha 		= models.DateField(default=datetime.date.today)
+    fecha 		= models.DateField(default=datetime.date.today())
     duracion 	= models.TimeField()
-    notas 		= models.CharField(max_length=500, blank=True)
-    tipo		= models.DecimalField(decimal_places=0,max_digits=2,choices= TIPO_PARTE)
+    notas 		= models.TextField(max_length=500, blank=True)
+    tipo		= models.DecimalField(decimal_places=0,max_digits=2,choices= TIPO_PARTE,default=1)
     cliente		= models.ForeignKey(Cliente)
     usuario		= models.ForeignKey(User, blank=True, null=True)
     def __unicode__(self):
-        return self.nombre
+        return "%s-%s"%(self.cliente.nombre,self.fecha)
     def get_absolute_url(self):
-        return "partes/%s/"%self.id
+        return "/horas/partes/editar/%s/"%self.id
 
 
