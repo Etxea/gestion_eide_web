@@ -29,6 +29,8 @@
             {% endfor %}
             </tbody>
         </table>
+        {% include "pagination/pagination.html" %}
+
     </div>
     <div class="col-md-2">
         <a href="{% url 'parte_nuevo' %}"><button>Añadir parte</button></a>
@@ -41,8 +43,7 @@
         </ul>
         <h4>Filtar por usuario</h4>
         <ul>
-            <li><a href="{% url 'partes_lista' %}">Todos</a></li>
-            <li><a href="{% url 'partes_mi_lista' %}">Mios</a></li>
+            <li><a href="{% url 'partes_lista' %}">Todos</a>|<a href="{% url 'partes_mi_lista' %}">Mios</a></li>
             {% for usuario in lista_usuarios %}
             <li><a href="{% url 'partes_lista_usuario' usuario.id %}">{{usuario.username}}</a></li>
             {% endfor %}

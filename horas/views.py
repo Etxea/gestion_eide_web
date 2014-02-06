@@ -30,6 +30,7 @@ from django.core.urlresolvers import reverse
 
 class ParteLista(ListView):
     model=Parte
+    paginate_by = 12
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ParteLista, self).dispatch(*args, **kwargs)
@@ -85,6 +86,8 @@ class ParteEditar(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ParteEditar, self).dispatch(*args, **kwargs)
+    def get_success_url(self):
+        return reverse("partes_lista") 
 
 class ParteDetalle(DetailView):
     model = Parte

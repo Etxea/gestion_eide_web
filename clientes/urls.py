@@ -12,5 +12,3 @@ urlpatterns = patterns('',
     url(r'(?P<pk>\d+)/$',login_required(DetailView.as_view(model=Cliente)), name="cliente_detalle"),
     url(r'editar/(?P<pk>\d+)/$',login_required(UpdateView.as_view(model=Cliente)), name="cliente_editar"),
 )
-
-

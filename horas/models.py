@@ -21,6 +21,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from django.core.urlresolvers import reverse_lazy
 import datetime
 
 from clientes.models import Cliente
@@ -50,13 +51,15 @@ class Parte(models.Model):
     tipo		= models.DecimalField(decimal_places=0,max_digits=2,choices= TIPO_PARTE,default=1)
     cliente		= models.ForeignKey(Cliente)
     usuario		= models.ForeignKey(User, blank=True, null=True)
-    contabilizado = models.BooleanField(default=False)
+    #contabilizado = models.BooleanField(default=False)
     def __unicode__(self):
         return "%s-%s"%(self.cliente.nombre,self.fecha)
     def get_absolute_url(self):
-        if self.contabilizado == True:
-            return "/horas/partes/ver/%s/"%self.id
-        else:
-            return "/horas/partes/editar/%s/"%self.id
+        #reverse_lazy('parte_detalle',args=[self.id])
+        return "/horas/partes/editar/%s/"%self.id
+        #if self.contabilizado == True:
+        #    return "/horas/partes/ver/%s/"%self.id
+        #else:
+        #    return "/horas/partes/editar/%s/"%self.id
 
 

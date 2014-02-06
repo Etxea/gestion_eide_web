@@ -14,6 +14,8 @@
                 <td>Id</td>
                 <td>Nombre</td>
                 <td>Email</td>
+                <td>Telefono</td>
+                <td>Acciones</td>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +25,10 @@
                 <td>{{ cliente.nombre }}</td>
                 <td>{{ cliente.email }}</td>
                 <td>{{ cliente.telefono }}</td>
-                <td><a href="{% url 'parte_nuevo_cliente' cliente.id %}">Añadir horas</a></td>
+                <td>
+                    <a href="{% url 'parte_nuevo_cliente' cliente.id %}">Añadir horas</a>
+                    <a href="{% url 'partes_lista_cliente' cliente.id %}">Ver horas</a>
+                </td>
             </tr>
             {% endfor %}
             </tbody>
