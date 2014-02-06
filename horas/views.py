@@ -42,6 +42,11 @@ class ParteLista(ListView):
         context['lista_usuarios'] = User.objects.all()
         return context
 
+class ParteListaPendientes(ParteLista):
+    def get_queryset(self):
+        
+        return Parte.objects.filter(contabilizado=False)    
+
 class ParteListaCliente(ParteLista):
     def get_queryset(self):
         cliente = get_object_or_404(Cliente, pk=self.kwargs['cliente_id'])

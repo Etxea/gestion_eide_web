@@ -51,7 +51,7 @@ class Parte(models.Model):
     tipo		= models.DecimalField(decimal_places=0,max_digits=2,choices= TIPO_PARTE,default=1)
     cliente		= models.ForeignKey(Cliente)
     usuario		= models.ForeignKey(User, blank=True, null=True)
-    #contabilizado = models.BooleanField(default=False)
+    contabilizado = models.BooleanField(default=False)
     def __unicode__(self):
         return "%s-%s"%(self.cliente.nombre,self.fecha)
     def get_absolute_url(self):
