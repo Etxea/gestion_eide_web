@@ -8,6 +8,7 @@
 {% block style_base %}
     <link href="{% static "pinax/css/theme.css" %}" rel="stylesheet">
     <link href="{% static "css/site.css" %}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css" /> -->
     {% block extra_style %}{% endblock %}
 {% endblock %}
 
@@ -20,25 +21,11 @@
 {% if request.user.is_authenticated %}
 <ul class="nav navbar-nav">
 
-    <li id="partes" class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Clientes
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-            <li><a href="{% url 'cliente_lista' %}">Listado</a></li>
-            <li><a href="{% url 'cliente_nuevo' %}">Nuevo Cliente</a></li>
-        </ul>
+    <li id="partes" >
+        <a href="{% url 'cliente_lista' %}">Clientes</a>
     </li>
-    <li id="partes" class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Partes/Horas
-            <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-            <li><a href="{% url 'partes_lista' %}">Lista Partes</a></li>
-            <li><a href="{% url 'parte_nuevo' %}">Nuevo Parte</a></li>
-        </ul>
+    <li id="partes" >
+        <a href="{% url 'partes_lista' %}">Partes</a>
     </li>
 </ul>
 {% endif %}
@@ -57,8 +44,8 @@
 
 
 {% block script_base %}
-    <script src="{% block jquery_src %}{% static "pinax/js/jquery.js" %}{% endblock %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "pinax/js/theme.js" %}"></script>
+    <script src="{% block jquery_src %}{% static 'pinax/js/jquery.js' %}{% endblock %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'pinax/js/theme.js' %}"></script>
     {% block extra_script %}{% endblock %}
 {% endblock %}

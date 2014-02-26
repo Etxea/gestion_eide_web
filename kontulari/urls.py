@@ -7,6 +7,7 @@ from django.contrib import admin
 
 urlpatterns = patterns("",
     url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
+    url(r"^acercade$", TemplateView.as_view(template_name="about.html"), name="about"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^accounts/", include("account.urls")),
     url(r"^clientes/", include("clientes.urls")),

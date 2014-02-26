@@ -7,23 +7,26 @@
 {% block body_class %}home{% endblock %}
 
 {% block body %}
+
 <div class="jumbotron">
-    <h1>{% trans "Bienvenido a Kontulari.eu" %}</h1>
-    <p>
-        {% blocktrans %}
-        <b>Kontulari</b> es un software de gestión para la pyme. Kontulari 
-        permite gestionar clientes partes y bonos de mantenimiento y generar facturas.
-        {% endblocktrans %}
+{% if user.is_authenticated %}
+<h3>Acciones Rápidas</h3>
+    <p><a href="{% url 'parte_nuevo' %}" class="btn btn-primary btn-lg">Nuevo Parte</a>
+        <a href="{% url 'partes_lista' %}"><button class="btn btn-default btn-lg" >Partes</button></a>
+        <a href="{% url 'cliente_lista' %}"><button class="btn btn-default btn-lg" >Clientes</button></a>
+        <a href="{% url 'about' %}"><button class="btn btn-default btn-lg" >Acerca de...</button></a>
     </p>
-    
-    
-    {% if user.is_authenticated %}
-        
-        <p class="what_next">Ya puedes <a href="{% url 'partes_lista' %}" class="btn btn-primary large">Gestionar Partes</a>.</p>
-    {% else %}
-        {% url "account_login" as login_url %}
-        
-        <p> {% blocktrans %}Necesitas <a href="{{ login_url }}" class="btn btn-default">Hacer Log In</a> .{% endblocktrans %}</p>
-    {% endif %}
+{% else %}
+{% url "account_login" as login_url %}
+    <p> {% blocktrans %}Haz <a href="{{ login_url }}" class="btn btn-default">Log In</a> .{% endblocktrans %}</p>
+{% endif %}
+</div>
+
+<div class="jumbotron">
+    <!-- <h1>{% trans "Bienvenido a Kontulari.eu" %}</h1> -->
+    <p>
+        {% url "about" as about_url %}
+        <b>Kontulari</b> es un software de gestión para la pymes, podrás gestionar clientes partes y bonos de mantenimiento y generar facturas. <a href="{{about_url}}"Saber más</a>.
+    </p>   
 </div>
 {% endblock %}
