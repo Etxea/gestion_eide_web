@@ -2,8 +2,9 @@
 {% load i18n %}
 
 {% if is_paginated %}
+
 <div class="pagination">
-    <ul>
+    <ul class="pagination">
         {% if page_obj.has_previous %}
             <li class="prev">
                 <a href="?page={{ page_obj.previous_page_number }}{{ getvars }}{{ hashtag }}">
@@ -30,11 +31,15 @@
             <li class="next">
                 <a href="?page={{ page_obj.next_page_number }}{{ getvars }}{{ hashtag }}">
                     <button type="button" class="btn btn-default">
-                        {% trans "Next" %}<span class="glyphicon glyphicon-arrow-right"></span>
+                        <span class="glyphicon glyphicon-chevron-right"></span>
                     </button>
                 </a></li>
         {% else %}
-            <li class="next disabled"><a>{% trans "Next" %} →</a></li>
+            <li class="next disabled"><a>
+                <button type="button" class="btn btn-default disabled">
+                        <span class="glyphicon glyphicon-chevron-right disabled"></span>
+                </button>
+            </a></li>
         {% endif %}
     </ul>
 </div>

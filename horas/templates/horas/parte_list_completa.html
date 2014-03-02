@@ -5,12 +5,9 @@
 {% block body %}
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <div class="btn-group">
-        <a href="{% url 'partes_lista' %}"><button class="btn-group btn-default btn-lg" >Pendientes</button></a>
-        <a href="{% url 'partes_lista_todos' %}"><button class="btn-group btn-default btn-lg" >Todos</button></a>
-        <a href="{% url 'partes_mi_lista' %}"><button class="btn-group btn-default btn-lg" >Mios</button></a>
-        <a href="{% url 'parte_nuevo' %}"><button class="btn-group btn-primary btn-lg" >Nuevo parte</button></a>
-        </div>
+        <a href="{% url 'parte_nuevo' %}"><button class="btn btn-primary btn-lg" >Nuevo parte</button></a>
+        <a href="{% url 'partes_lista' %}"><button class="btn btn-default btn-lg" >Pendientes</button></a>
+        <a href="{% url 'partes_mi_lista' %}"><button class="btn btn-default btn-lg" >Mios</button></a>
     </div>
 </div>
 <div class="row">
@@ -22,7 +19,7 @@
                     <td>Cliente</td>
                     <td>Duracion</td>
                     <td>Usuario</td>
-                    
+                    <td>Contabilizado</td>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +36,7 @@
                 </td>
                 <td>{{ parte.duracion }}</td>
                 <td>{{ parte.usuario.username }}</td>
+                <td>{{ parte.contabilizado }}</td>
             </tr>
             {% endfor %}
             </tbody>
