@@ -3,16 +3,7 @@
 {% load i18n %}
 
 {% block body %}
-<div class="row">
-    <div class="col-md-12 col-xs-12">
-        <div class="btn-group">
-        <a href="{% url 'partes_lista' %}"><button class="btn-group btn-default btn-lg" >Pendientes</button></a>
-        <a href="{% url 'partes_lista_todos' %}"><button class="btn-group btn-default btn-lg" >Todos</button></a>
-        <a href="{% url 'partes_mi_lista' %}"><button class="btn-group btn-default btn-lg" >Mios</button></a>
-        <a href="{% url 'parte_nuevo' %}"><button class="btn-group btn-primary btn-lg" >Nuevo parte</button></a>
-        </div>
-    </div>
-</div>
+{% include "horas/_list_buttons.html" %}
 <div class="row">
     <div class="col-md-10 col-xs-12">
         <table class="table">
@@ -37,7 +28,7 @@
                     {{ parte.cliente.nombre }}
                     
                 </td>
-                <td>{{ parte.duracion }}</td>
+                <td>{{parte.duracion|date:"H:i"}}</td>
                 <td>{{ parte.usuario.username }}</td>
             </tr>
             {% endfor %}

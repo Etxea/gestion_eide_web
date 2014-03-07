@@ -29,6 +29,7 @@ from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
 
 class ParteLista(ListView):
+    template_name = "horas/parte_list_completa.html"
     model=Parte
     paginate_by = 12
     @method_decorator(login_required)
@@ -43,6 +44,7 @@ class ParteLista(ListView):
         return context
 
 class ParteListaPendientes(ParteLista):
+    template_name = "horas/parte_list.html"
     def get_queryset(self):
         
         return Parte.objects.filter(contabilizado=False)    
