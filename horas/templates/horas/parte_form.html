@@ -3,9 +3,9 @@
 {% load i18n %}
 
 {% block body %}
+<h1>{% trans "Nuevo Parte" %}</h1>
+<form action="" method="post" role="form" >{% csrf_token %}
 <div class="row">
-    <h1>{% trans "Nuevo Parte" %}</h1>
-    <form action="" method="post" role="form" >{% csrf_token %}
     <div class="col-md-3 col-xs-6">
       <label class="control-label required-field" for="id_fecha"> Fecha </label> {{ form.fecha }}
     </div>

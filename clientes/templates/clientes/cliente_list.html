@@ -6,30 +6,30 @@
 
         
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-10 col-xs-12">
         <h4>Listado de clientes</h4>
         <table class="table">
             <thead>
                 <tr>
-                <td>Id</td>
                 <td>Nombre</td>
                 <td>Email</td>
                 <td>Telefono</td>
-                <td>Horas pendientes</td>
+                <td>H. Pendientes</td>
                 <td>Acciones</td>
                 </tr>
             </thead>
             <tbody>
             {% for cliente in object_list %}
             <tr>
-                <td> <a href="{{cliente.get_absolute_url}}">{{ cliente.id }}</a> </td>
-                <td>{{ cliente.nombre }}</td>
+                
+                <td><a href="{{cliente.get_absolute_url}}">{{ cliente.nombre }}</a></td>
                 <td>{{ cliente.email }}</td>
                 <td>{{ cliente.telefono }}</td>
                 <td>{{ cliente.get_horas_pendientes }}</td>
                 <td>
-                    <a href="{% url 'parte_nuevo_cliente' cliente.id %}">Añadir horas</a>
-                    <a href="{% url 'partes_lista_cliente' cliente.id %}">Ver horas</a>
+                    -|
+                    <a href="{% url 'parte_nuevo_cliente' cliente.id %}"><i class="icon-plus"></i>horas</a>|
+                    <a href="{% url 'partes_lista_cliente' cliente.id %}"><i class="icon-eye-open"></i>horas</a>|-
                 </td>
             </tr>
             {% endfor %}
