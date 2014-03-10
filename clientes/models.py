@@ -16,7 +16,9 @@
 
 
 from django.db import models
+from django.db.models import Sum
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 
@@ -35,4 +37,14 @@ class Cliente(models.Model):
         return self.nombre
     def get_absolute_url(self):
         return "/clientes/%s/"%self.id
+        
+    def get_horas_pendientes(self):
+        try:
+            horas = self.parte_set.filter(contabilizado=False).aggregate(Sum('duracion'))
+        except:
+            print "No podemos agregar fecha asi que a mano"
+            horas = datetime.time(0)
+            for hora in self.parte_set.filter(contabilizado=False):
+                horas = horas + datetime.timedelta(hora.duracion)
+        return horas
 
