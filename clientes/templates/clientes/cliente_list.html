@@ -15,6 +15,7 @@
                 <td>Nombre</td>
                 <td>Email</td>
                 <td>Telefono</td>
+                <td>Horas pendientes</td>
                 <td>Acciones</td>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                 <td>{{ cliente.nombre }}</td>
                 <td>{{ cliente.email }}</td>
                 <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.get_horas_pendientes }}</td>
                 <td>
                     <a href="{% url 'parte_nuevo_cliente' cliente.id %}">Añadir horas</a>
                     <a href="{% url 'partes_lista_cliente' cliente.id %}">Ver horas</a>
