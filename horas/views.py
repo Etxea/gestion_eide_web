@@ -78,6 +78,11 @@ class ParteNuevo(CreateView):
         user = self.request.user
         self.initial = {"usuario":user.id}
         return self.initial
+    def form_valid(self, form):
+        print "hacemos que el usuario sea ",self.request.user
+        form.instance.usuario = self.request.user
+        return super(ParteNuevo, self).form_valid(form)
+
 
 class ParteNuevoCliente(ParteNuevo):
     ##Recogemos los datos iniciales (clientes y user)
