@@ -47,21 +47,21 @@ class ParteListaPendientes(ParteLista):
     template_name = "horas/parte_list.html"
     def get_queryset(self):
         
-        return Parte.objects.filter(contabilizado=False)    
+        return Parte.objects.filter(contabilizado=False).order_by('-fecha')
 
 class ParteListaCliente(ParteLista):
     def get_queryset(self):
         cliente = get_object_or_404(Cliente, pk=self.kwargs['cliente_id'])
-        return Parte.objects.filter(cliente=cliente)    
+        return Parte.objects.filter(cliente=cliente).order_by('-fecha')    
 
 class ParteListaUsuario(ParteLista):
     def get_queryset(self):
         usuario = get_object_or_404(User, pk=self.kwargs['usuario_id'])
-        return Parte.objects.filter(usuario=usuario)    
+        return Parte.objects.filter(usuario=usuario).order_by('-fecha')    
 
 class MisPartes(ParteLista):
     def get_queryset(self):
-        return Parte.objects.filter(usuario=self.request.user)    
+        return Parte.objects.filter(usuario=self.request.user).order_by('-fecha')    
 
 
 class ParteNuevo(CreateView):
