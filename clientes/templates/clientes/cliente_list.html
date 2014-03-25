@@ -27,9 +27,12 @@
                 <td>{{ cliente.telefono }}</td>
                 <td>{{ cliente.get_horas_pendientes }}</td>
                 <td>
-                    -|
-                    <a href="{% url 'parte_nuevo_cliente' cliente.id %}"><i class="icon-plus"></i>horas</a>|
-                    <a href="{% url 'partes_lista_cliente' cliente.id %}"><i class="icon-eye-open"></i>horas</a>|-
+                    <a class="btn btn-mini btn-info" href="{% url 'parte_nuevo_cliente' cliente.id %}" alt="Nuevo parte" >
+                        <i class="icon-plus"></i>
+                    </a>
+                    <a class="btn btn-mini btn-info" href="{% url 'partes_lista_cliente' cliente.id %}" alt="Ver partes" >
+                        <i class="icon-eye-open"></i>
+                    </a>
                 </td>
             </tr>
             {% endfor %}

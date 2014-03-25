@@ -6,3 +6,5 @@ eventlog==0.7.0
 django-jsonfield==0.9.12
 django-forms-bootstrap
 south
+django-tastypie
+django-bootstrap3-datetimepicker

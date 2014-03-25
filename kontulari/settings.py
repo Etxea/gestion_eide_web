@@ -136,6 +136,8 @@ INSTALLED_APPS = [
     "metron",
     "django_forms_bootstrap",
     "south",
+    "tastypie",
+    "bootstrap3_datetime",
     
     # project
     "kontulari",

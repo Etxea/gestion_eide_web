@@ -20,6 +20,7 @@
 #  
 
 from models import *
+from forms import *
 from clientes.models import *
 from django.contrib.auth.models import User
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
@@ -66,6 +67,7 @@ class MisPartes(ParteLista):
 
 class ParteNuevo(CreateView):
     model = Parte
+    form_class = ParteForm
     def get_success_url(self):
         return reverse("partes_lista") 
 

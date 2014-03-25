@@ -1,21 +1,12 @@
-pinax-project-account
-=====================
+Etxea Kontulari
+===============
 
-a starter project the incorporates account features from django-user-accounts
+Proyecto para la gestión de partes y bonos de cara a dar un servicio de mantenimiento informático.
 
-
-Usage:
-
-    django-admin.py startproject --template=https://github.com/pinax/pinax-project-account/zipball/master <project_name>
-
-Getting Started:
-
-    pip install virtualenv
-    virtualenv mysiteenv
-    source mysiteenv/bin/activate
-    pip install Django==1.6.1
-    django-admin.py startproject --template=https://github.com/pinax/pinax-project-account/zipball/master mysite
-    cd mysite
-    pip install -r requirements.txt
-    python manage.py syncdb
-    python manage.py runserver
+    
+Librerias:
+    DJANGO
+    Pinax
+    Pinax
+    TastyPie
+    https://pypi.python.org/pypi/django-bootstrap3-datetimepicker/2.2.3
