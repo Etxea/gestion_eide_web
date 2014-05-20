@@ -4,10 +4,10 @@
 
 {% block body %}
 
-        
+
 <div class="row">
     <div class="col-md-10 col-xs-12">
-        <h4>Listado de clientes</h4>
+        <h4>Listado de profesors</h4>
         <table class="table">
             <thead>
                 <tr>
@@ -19,18 +19,16 @@
                 </tr>
             </thead>
             <tbody>
-            {% for cliente in object_list %}
+            {% for profesor in object_list %}
             <tr>
-                
-                <td><a href="{{cliente.get_absolute_url}}">{{ cliente.nombre }}</a></td>
-                <td>{{ cliente.email }}</td>
-                <td>{{ cliente.telefono }}</td>
-                <td>{{ cliente.get_horas_pendientes }}</td>
+
+                <td><a href="{{profesor.get_absolute_url}}">{{ profesor.user.username }}</a></td>
+                <td>{{ profesor.email }}</td>
+                <td>{{ profesor.telefono }}</td>
+                <td>{{ profesor.get_horas_pendientes }}</td>
                 <td>
-                    <a class="btn btn-mini btn-info" href="{% url 'parte_nuevo_cliente' cliente.id %}" alt="Nuevo parte" >
-                        <i class="icon-plus"></i>
-                    </a>
-                    <a class="btn btn-mini btn-info" href="{% url 'partes_lista_cliente' cliente.id %}" alt="Ver partes" >
+
+                    <a class="btn btn-mini btn-info" href="{% url 'asistencia_lista_profesor' profesor.id %}" alt="Ver Asistencias" >
                         <i class="icon-eye-open"></i>
                     </a>
                 </td>
@@ -41,7 +39,7 @@
     </div>
     <div class="col-md-2">
     <h4>Acciones</h4>
-    <a href="{% url 'cliente_nuevo' %}"><button>Nuevo</button></a>
+    <a href="{% url 'profesor_nuevo' %}"><button>Nuevo</button></a>
     </div>
 </div>
 {% endblock %}
