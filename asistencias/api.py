@@ -3,8 +3,8 @@ from tastypie.authentication import BasicAuthentication
 from horas.models import *
 
 
-class ParteResource(ModelResource):
+class AsistenciaResource(ModelResource):
     class Meta:
-        queryset = Parte.objects.all()
-        resource_name = 'parte'
+        queryset = Asistencia.objects.all()
+        resource_name = 'Asistencia'
         authentication = BasicAuthentication()

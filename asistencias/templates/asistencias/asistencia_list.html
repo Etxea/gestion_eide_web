@@ -3,9 +3,7 @@
 {% load i18n %}
 
 {% block body %}
-
-{% include "horas/_list_buttons.html" %}
-
+{% include "asistencias/_list_buttons.html" %}
 <div class="row">
     <div class="col-md-10 col-xs-12">
         <table class="table">
@@ -15,24 +13,23 @@
                     <td>Cliente</td>
                     <td>Duracion</td>
                     <td>Usuario</td>
-                    <td>Contabilizado</td>
+
                 </tr>
             </thead>
             <tbody>
-            {% for parte in object_list %}
+            {% for asistencia in object_list %}
             <tr>
-                <td><a href="{{ parte.get_absolute_url}}">{{ parte.fecha }}</a></td>
-                <td><a href="{% url 'parte_nuevo_cliente' parte.cliente.id %}">
+                <td><a href="{{ asistencia.get_absolute_url}}">{{ asistencia.fecha }}</a></td>
+                <td><a href="{% url 'asistencia_nuevo_curso' asistencia.curso.id %}">
                         <button type="button" class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </a>
-                    {{ parte.cliente.nombre }}
-                    
+                    {{ asistencia.curso.nombre }}
+
                 </td>
-                <td>{{ parte.duracion|date:"H:i" }}</td>
-                <td>{{ parte.usuario.username }}</td>
-                <td>{{ parte.contabilizado }}</td>
+                <td>{{asistencia.duracion|date:"H:i"}}</td>
+                <td>{{ asistencia.usuario.username }}</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -41,18 +38,18 @@
 
     </div>
     <div class="col-md-2 col-xs-12">
-        <h4>Filtar por cliente</h4>
+        <h4>Filtar por curso</h4>
         <ul>
-            <li><a href="{% url 'partes_lista' %}">Todos</a></li>
-            {% for cliente in lista_clientes %}
-            <li><a href="{% url 'partes_lista_cliente' cliente.id %}">{{cliente.nombre}}</a></li>
+            <li><a href="{% url 'asistencias_lista' %}">Todos</a></li>
+            {% for curso in lista_cursos %}
+            <li><a href="{% url 'asistencias_lista_curso' curso.id %}">{{curso.nombre}}</a></li>
             {% endfor %}
         </ul>
         <h4>Filtar por usuario</h4>
         <ul>
-            <li><a href="{% url 'partes_lista' %}">Todos</a>|<a href="{% url 'partes_mi_lista' %}">Mios</a></li>
+            <li><a href="{% url 'asistencias_lista' %}">Todos</a>|<a href="{% url 'asistencias_mi_lista' %}">Mios</a></li>
             {% for usuario in lista_usuarios %}
-            <li><a href="{% url 'partes_lista_usuario' usuario.id %}">{{usuario.username}}</a></li>
+            <li><a href="{% url 'asistencias_lista_usuario' usuario.id %}">{{usuario.username}}</a></li>
             {% endfor %}
         </ul>
     </div>

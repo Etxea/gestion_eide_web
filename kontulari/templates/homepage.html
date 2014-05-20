@@ -13,8 +13,8 @@
 <div class="col-md-12 col-xs-12">
     <h3>Acciones Rápidas</h3>
     <div class="btn-group">
-        <a href="{% url 'parte_nuevo' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>
-        <a href="{% url 'partes_lista' %}" class="btn btn-default btn-lg" >Asistencia</a>
+        <a href="{% url 'asistencia_nuevo' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>
+        <a href="{% url 'asistencias_lista' %}" class="btn btn-default btn-lg" >Asistencia</a>
         <a href="{% url 'cliente_lista' %}" class="btn btn-default btn-lg" >Clientes</a>
         <a href="{% url 'about' %}" class="btn btn-default btn-lg" >Acerca de...</a>
     </div>
@@ -29,7 +29,7 @@
     <!-- <h1>{% trans "Bienvenido a Kontulari.eu" %}</h1> -->
     <p>
         {% url "about" as about_url %}
-        <b>Kontulari</b> es un software de gestión para la pymes, podrás gestionar clientes partes y bonos de mantenimiento y generar facturas. <a href="{{about_url}}"Saber más</a>.
-    </p>   
+        <b>Kontulari</b> es un software de gestión para la pymes, podrás gestionar clientes asistencias y bonos de mantenimiento y generar facturas. <a href="{{about_url}}"Saber más</a>.
+    </p>
 </div>
 {% endblock %}

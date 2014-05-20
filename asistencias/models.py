@@ -24,42 +24,25 @@ from django.utils.translation import gettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
 import datetime
 
-from clientes.models import Cliente
-TIPO_PARTE = (
-    (1, _('Local')),
-    (2, _('Remoto'))
-)
-
-class Bono(models.Model):
-    titulo = models.CharField(max_length=100)
-    fecha = models.DateTimeField()
-
-    cliente = models.ForeignKey(Cliente)
-    duracion= models.DecimalField(decimal_places=0,max_digits=3)
-    facturado = models.BooleanField(default=False)
-
-    def __unicode__(self):
-        return "%s - %s"%(self.cliente,self.fecha)
-    def get_absolute_url(self):
-        return "%s/"%self.id
+from cursos.models import Curso
 
 
-class Parte(models.Model):
+class Asistencia(models.Model):
     fecha       = models.DateField(default=datetime.date.today())
     duracion    = models.TimeField()
     notas       = models.TextField(max_length=500, blank=True)
-    tipo        = models.DecimalField(decimal_places=0,max_digits=2,choices= TIPO_PARTE,default=1)
-    cliente     = models.ForeignKey(Cliente)
+    curso       = models.ForeignKey(Curso)
     usuario     = models.ForeignKey(User, blank=True, null=True)
     contabilizado = models.BooleanField(default=False)
     def __unicode__(self):
-        return "%s-%s"%(self.cliente.nombre,self.fecha)
+        return "%s-%s"%(self.curso.nombre,self.fecha)
+
     def get_absolute_url(self):
-        #reverse_lazy('parte_detalle',args=[self.id])
-        return "/horas/partes/editar/%s/"%self.id
-        #if self.contabilizado == True:
-        #    return "/horas/partes/ver/%s/"%self.id
-        #else:
-        #    return "/horas/partes/editar/%s/"%self.id
+        if self.contabilizado == True:
+
+            return reverse_lazy('asistencia_detalle',args=[self.id])
+        else:
+            return reverse_lazy('asistencia_editar',args=[self.id])
+
 
 

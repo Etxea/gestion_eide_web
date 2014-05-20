@@ -142,7 +142,7 @@ INSTALLED_APPS = [
     # project
     "kontulari",
     "clientes",
-    "horas",
+    "asistencias",
     "profesores",
     "cursos",
 ]

@@ -5,9 +5,8 @@ from django.views.generic import TemplateView
 
 from django.contrib import admin
 
-from horas.api import ParteResource
-
-parte_resource = ParteResource()
+#from asistencias.api import AsistenciaResource
+#asistencia_resource = AsistenciaResource()
 
 
 urlpatterns = patterns("",
@@ -16,7 +15,7 @@ urlpatterns = patterns("",
     url(r"^admin/", include(admin.site.urls)),
     url(r"^accounts/", include("account.urls")),
     url(r"^clientes/", include("clientes.urls")),
-    url(r"^horas/", include("horas.urls")),
+    url(r"^asisetncias/", include("asistencias.urls")),
     url(r"^profesores/", include("profesores.urls")),
     url(r"^cursos/", include("cursos.urls")),
     #url(r'^api/', include(parte_resource.urls)),
