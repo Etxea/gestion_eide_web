@@ -31,17 +31,21 @@
                 <td>
                     <table>
                         {% for clase in curso.clase_set.all %}
-                        <tr><td>{{clase.profesor.nombre}}</td><td>{{clase.get_dia_semana_display}}</td></tr>
+                        <tr>
+                            <td>{{clase.get_dia_semana_display}} ({{clase.hora|date:"h:i"}})</td>
+                            <td>{{clase.profesor.user.username}}</td>
+                            </tr>
                         {% endfor %}
 
                     </table>
                 </td>
                 <td>
+                    <!--
                     <a class="btn btn-mini btn-info" href="#" alt="Nueva Asistencia" >
                         <i class="icon-plus"></i>
-                    </a>
-                    <a class="btn btn-mini btn-info" href="#" alt="Ver Asistencias" >
-                        <i class="icon-eye-open"></i>
+                    </a>-->
+                    <a class="btn btn-mini btn-info" href="{% url 'asistencias_lista_curso' curso.id %}" alt="Ver Asistencias" >
+                        <i class="glyphicon glyphicon-eye-open"></i>
                     </a>
                 </td>
             </tr>

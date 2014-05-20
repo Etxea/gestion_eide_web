@@ -66,8 +66,8 @@ class AsistenciaListaUsuario(AsistenciaLista):
 class AsistenciaListaCliente(AsistenciaLista):
     def get_queryset(self):
         cliente = get_object_or_404(Cliente, pk=self.kwargs['cliente_id'])
-        cursos = Curso.objects.filter(cliente=clientes)
-        return Asistencia.objects.filter(curso=curso).order_by('-fecha')
+        cursos = Curso.objects.filter(cliente=cliente)
+        return Asistencia.objects.filter(curso=cursos).order_by('-fecha')
 
 class MisAsistencias(AsistenciaLista):
     def get_queryset(self):
@@ -93,6 +93,11 @@ class AsistenciaNueva(CreateView):
         print "hacemos que el usuario sea ",self.request.user
         form.instance.usuario = self.request.user
         return super(AsistenciaNueva, self).form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super(AsistenciaNueva, self).get_context_data(**kwargs)
+        profesor = Profesor.objects.get(user=self.request.user)
+        context['form'].fields['curso'].queryset = Curso.objects.filter(clase=profesor.clase_set.all())
+        return context
 
 
 class AsistenciaNuevaCurso(AsistenciaNueva):
