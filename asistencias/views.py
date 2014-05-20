@@ -46,12 +46,19 @@ class AsistenciaLista(ListView):
         context['lista_cursos'] = Curso.objects.all()
         context['lista_usuarios'] = User.objects.all()
         return context
+    def get_queryset(self):
+        if self.request.user.is_staff:
+            return Asistencia.objects.all().order_by('-fecha')
+        else:
+            return Asistencia.objects.filter(usuario=self.request.user).order_by('-fecha')
 
 class AsistenciaListaPendientes(AsistenciaLista):
     template_name = "asistencias/asistencia_list.html"
     def get_queryset(self):
-
-        return Asistencia.objects.filter(contabilizado=False).order_by('-fecha')
+        if self.request.user.is_staff:
+            return Asistencia.objects.all().filter(contabilizado=False).order_by('-fecha')
+        else:
+            return Asistencia.objects.filter(usuario=self.request.user).filter(contabilizado=False).order_by('-fecha')
 
 class AsistenciaListaCurso(AsistenciaLista):
     def get_queryset(self):
