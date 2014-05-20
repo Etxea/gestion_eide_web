@@ -2,6 +2,17 @@
 {% load bootstrap_tags %}
 {% load i18n %}
 
+{% block extra_script %}
+<!-- para el datepicker -->
+{{ form.media }}
+<script>
+    $(function() {
+        $("#id_inicio_picker").datetimepicker({"pickTime": false, "weekStart": 1, "language": "es-es", "format": "YYYY-MM-DD"});
+        $("#id_fin_picker").datetimepicker({"pickTime": false, "weekStart": 1, "language": "es-es", "format": "YYYY-MM-DD"});
+    });
+</script>
+{% endblock %}
+
 {% block body %}
 
     <h1>{% trans "Nuevo Curso" %}</h1>
@@ -14,12 +25,4 @@
       <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
     </form>
-{% endblock %}
-
-{% block extra_script %}
-
-<!-- extra -->
-
-{{ form.media }}
-
 {% endblock %}

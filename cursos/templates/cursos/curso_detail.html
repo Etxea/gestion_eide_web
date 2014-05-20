@@ -2,6 +2,26 @@
 {% load bootstrap_tags %}
 {% load i18n %}
 
+
+{% block extra_script %}
+<!-- para el datepicker -->
+{{ clase_form.media }}
+
+<link href="/site_media/static/bootstrap3_datetime/css/bootstrap-datetimepicker.min.css" type="text/css" media="all" rel="stylesheet" />
+<script type="text/javascript" src="/site_media/static/bootstrap3_datetime/js/moment.min.js"></script>
+<script type="text/javascript" src="/site_media/static/bootstrap3_datetime/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/site_media/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.es.js"></script>
+
+<script>
+    $(function() {
+        $("#id_hora_picker").datetimepicker({"pickDate": false, "weekStart": 1, "language": "es-es", "format": "hh:mm","minuteStepping":15,"useSeconds": false,"useCurrent":false});
+        $("#id_hora").datetimepicker({"pickDate": false, "weekStart": 1, "language": "es-es", "format": "hh:mm","minuteStepping":15,"useSeconds": false,"useCurrent":false});
+        $("#id_duracion_picker").datetimepicker({"pickDate": false, "weekStart": 1, "language": "es-es", "format": "hh:mm","minuteStepping":15,"useSeconds": false,"useCurrent":false});
+        $("#id_duracion").datetimepicker({"pickDate": false, "weekStart": 1, "language": "es-es", "format": "hh:mm","minuteStepping":15,"useSeconds": false,"useCurrent":false});
+    });
+</script>
+{% endblock %}
+
 {% block body %}
     <h1>{{object.nombre}} para {{object.cliente.nombre}}</h1>
 <div class="row">

@@ -27,12 +27,21 @@
                 <td>{{ cliente.telefono }}</td>
                 <td>{{ cliente.get_horas_pendientes }}</td>
                 <td>
-                    <a class="btn btn-mini btn-info" href="{% url 'asistencia_nuevo_cliente' cliente.id %}" alt="Nuevo asistencia" >
-                        <i class="icon-plus"></i>
-                    </a>
-                    <a class="btn btn-mini btn-info" href="{% url 'asistencias_lista_cliente' cliente.id %}" alt="Ver asistencias" >
-                        <i class="icon-eye-open"></i>
-                    </a>
+                    <table>
+                        {% for curso in cliente.curso_set.all %}
+                        <tr>
+                            <td>{{curso.nombre}}</td>
+                            <td>
+                                <a class="btn btn-mini btn-info" href="{% url 'asistencia_nueva_curso' curso.id %}" alt="Nuevo asistencia" >
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+                                <a class="btn btn-mini btn-info" href="{% url 'asistencia_lista_curso' curso.id %}" alt="Ver asistencias" >
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                    </table>
                 </td>
             </tr>
             {% endfor %}

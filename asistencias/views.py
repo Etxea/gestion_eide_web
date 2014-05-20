@@ -65,7 +65,7 @@ class MisAsistencias(AsistenciaLista):
         return Asistencia.objects.filter(usuario=self.request.user).order_by('-fecha')
 
 
-class AsistenciaNuevo(CreateView):
+class AsistenciaNueva(CreateView):
     model = Asistencia
     form_class = AsistenciaForm
     def get_success_url(self):
@@ -73,26 +73,26 @@ class AsistenciaNuevo(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(AsistenciaNuevo, self).dispatch(*args, **kwargs)
+        return super(AsistenciaNueva, self).dispatch(*args, **kwargs)
 
     def get_initial(self):
-        super(AsistenciaNuevo, self).get_initial()
+        super(AsistenciaNueva, self).get_initial()
         user = self.request.user
         self.initial = {"usuario":user.id}
         return self.initial
     def form_valid(self, form):
         print "hacemos que el usuario sea ",self.request.user
         form.instance.usuario = self.request.user
-        return super(AsistenciaNuevo, self).form_valid(form)
+        return super(AsistenciaNueva, self).form_valid(form)
 
 
-class AsistenciaNuevoCliente(AsistenciaNuevo):
+class AsistenciaNuevaCurso(AsistenciaNueva):
     ##Recogemos los datos iniciales (clientes y user)
     def get_initial(self):
-        super(AsistenciaNuevoCliente, self).get_initial()
-        cliente = Cliente.objects.get(pk=self.kwargs['cliente_id'])
+        super(AsistenciaNuevaCurso, self).get_initial()
+        curso = Curso.objects.get(pk=self.kwargs['curso_id'])
         user = self.request.user
-        self.initial = {"cliente":cliente.id, "usuario":user.id}
+        self.initial = {"curso":curso.id, "usuario":user.id}
         return self.initial
 
 class AsistenciaEditar(UpdateView):

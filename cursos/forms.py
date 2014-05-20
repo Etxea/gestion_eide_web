@@ -15,3 +15,7 @@ class ClaseForm(ModelForm):
 
     class Meta:
         model = Clase
+    widgets = {
+            'hora' : DateTimePicker(options={"format": "hh:mm", "pickTime": True,"pickDate":False,"useSeconds":False,"minuteStep":15}),
+            'duracion' : DateTimePicker(options={"format": "hh:mm", "pickTime": True,"pickDate":False,"useSeconds":False,"minuteStep":15})
+        }

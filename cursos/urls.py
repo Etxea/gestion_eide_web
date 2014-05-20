@@ -5,10 +5,11 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from models import *
 from views import *
+from forms import *
 
 urlpatterns = patterns('',
     url(r'^$', CursosListView.as_view(),name="cursos_lista"),
-    url(r'nuevo/$',login_required(CreateView.as_view(model=Curso)), name="curso_nuevo"),
+    url(r'nuevo/$',login_required(CreateView.as_view(model=Curso,form_class = CursoForm)), name="curso_nuevo"),
     url(r'clases/(?P<cliente_id>\d+)/nueva/$',login_required(CreateView.as_view(model=Clase)), name="clase_curso_nueva"),
     url(r'clases/nueva$',login_required(CreateView.as_view(model=Clase)), name="clase_nueva"),
     url(r'clases/(?P<pk>\d+)/editar/$',login_required(UpdateView.as_view(model=Clase)), name="clase_editar"),
