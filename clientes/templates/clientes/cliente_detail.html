@@ -5,23 +5,23 @@
 {% block body %}
 
     <h1>{% trans "Cliente" %} {{object.nombre}}</h1>
-    <a href="{% url 'parte_nuevo_cliente' object.id %}">Añadir horas</a>
+
     <table class="table">
-		<tr>
-			<td>Nombre</td><td>{{object.nombre}}</td>
-		</tr>
-		<tr>
-			<td>Razón Social</td><td>{{object.razon_social}}</td>
-		</tr>
-		<tr>
-			<td>NIF</td><td>{{object.nif}}</td>
-		</tr>
-		<tr>
-			<td>Dirección</td><td>{{object.direccion}}</td>
-		</tr>
-		<tr>
-			<td>E-mail</td><td><a href="mailto:{{object.user.email}}">{{object.user.email}}</a></td>
-		</tr>
+        <tr>
+            <td>Nombre</td><td>{{object.nombre}}</td>
+        </tr>
+        <tr>
+            <td>Razón Social</td><td>{{object.razon_social}}</td>
+        </tr>
+        <tr>
+            <td>NIF</td><td>{{object.NIF}}</td>
+        </tr>
+        <tr>
+            <td>Dirección</td><td>{{object.direccion}}</td>
+        </tr>
+        <tr>
+            <td>E-mail</td><td><a href="mailto:{{object.user.email}}">{{object.user.email}}</a></td>
+        </tr>
 
     </table>
     <a href="{% url 'cliente_editar' object.id %}">Editar</a>

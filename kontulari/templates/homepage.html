@@ -10,8 +10,10 @@
 
 <div class="jumbotron">
 {% if user.is_authenticated %}
+
 <div class="col-md-12 col-xs-12">
     <h3>Acciones Rápidas</h3>
+    {% if request.user.is_staff %}
     <div class="btn-group">
         <a href="{% url 'asistencia_nueva' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>
         <a href="{% url 'asistencias_lista' %}" class="btn btn-default btn-lg" >Asistencia</a>
@@ -19,7 +21,11 @@
         <a href="{% url 'profesores_lista' %}" class="btn btn-default btn-lg" >Profesores</a>
         <a href="{% url 'about' %}" class="btn btn-default btn-lg" >Acerca de...</a>
     </div>
+    {% else %}
+    <a href="{% url 'asistencia_nueva' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>
+    {% endif %}
 </div>
+
 {% else %}
 {% url "account_login" as login_url %}
     <p> {% blocktrans %}Haz <a href="{{ login_url }}" class="btn btn-default">Log In</a> .{% endblocktrans %}</p>

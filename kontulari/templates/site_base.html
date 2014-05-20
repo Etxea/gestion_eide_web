@@ -21,18 +21,20 @@
 {% block nav %}
 {% if request.user.is_authenticated %}
 <ul class="nav navbar-nav">
-
+    {% if request.user.is_staff %}
     <li id="asistencias" >
         <a href="{% url 'cliente_lista' %}">Empresas</a>
     </li>
-    <li id="Asistencias" >
-        <a href="{% url 'asistencias_lista' %}">Asistencias</a>
-    </li>
+
     <li id="Profesors" >
         <a href="{% url 'profesores_lista' %}">Profesores</a>
     </li>
     <li id="Cursos" >
         <a href="{% url 'cursos_lista' %}">Cursos</a>
+    </li>
+    {% endif %}
+    <li id="Asistencias" >
+        <a href="{% url 'asistencias_lista' %}">Asistencias</a>
     </li>
 </ul>
 {% endif %}

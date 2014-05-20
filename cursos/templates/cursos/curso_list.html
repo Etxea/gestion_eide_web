@@ -25,9 +25,9 @@
             <tr>
 
                 <td><a href="{{curso.get_absolute_url}}">{{ curso.nombre }}</a></td>
-                <td>{{curso.empresa.nombre}}</td>
-                <td>{{curso.empresa.inicio}}</td>
-                <td>{{curso.empresa.fin}}</td>
+                <td>{{curso.cliente.nombre}}</td>
+                <td>{{curso.inicio}}</td>
+                <td>{{curso.fin}}</td>
                 <td>
                     <table>
                         {% for clase in curso.clase_set.all %}

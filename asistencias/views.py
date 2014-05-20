@@ -19,15 +19,17 @@
 #
 #
 
-from models import *
-from forms import *
-from clientes.models import *
 from django.contrib.auth.models import User
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
+
+from models import *
+from forms import *
+from clientes.models import *
+from cursos.models import *
 
 class AsistenciaLista(ListView):
     template_name = "asistencias/asistencia_list_completa.html"
@@ -41,6 +43,7 @@ class AsistenciaLista(ListView):
         context = super(AsistenciaLista, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['lista_clientes'] = Cliente.objects.all()
+        context['lista_cursos'] = Curso.objects.all()
         context['lista_usuarios'] = User.objects.all()
         return context
 
@@ -52,13 +55,19 @@ class AsistenciaListaPendientes(AsistenciaLista):
 
 class AsistenciaListaCurso(AsistenciaLista):
     def get_queryset(self):
-        cliente = get_object_or_404(Cliente, pk=self.kwargs['curso_id'])
-        return Asistencia.objects.filter(cliente=cliente).order_by('-fecha')
+        curso = get_object_or_404(Curso, pk=self.kwargs['curso_id'])
+        return Asistencia.objects.filter(curso=curso).order_by('-fecha')
 
 class AsistenciaListaUsuario(AsistenciaLista):
     def get_queryset(self):
         usuario = get_object_or_404(User, pk=self.kwargs['usuario_id'])
         return Asistencia.objects.filter(usuario=usuario).order_by('-fecha')
+
+class AsistenciaListaCliente(AsistenciaLista):
+    def get_queryset(self):
+        cliente = get_object_or_404(Cliente, pk=self.kwargs['cliente_id'])
+        cursos = Curso.objects.filter(cliente=clientes)
+        return Asistencia.objects.filter(curso=curso).order_by('-fecha')
 
 class MisAsistencias(AsistenciaLista):
     def get_queryset(self):
@@ -101,7 +110,7 @@ class AsistenciaEditar(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(AsistenciaEditar, self).dispatch(*args, **kwargs)
     def get_success_url(self):
-        return reverse("Asistencias_lista")
+        return reverse("asistencias_lista")
 
 class AsistenciaDetalle(DetailView):
     model = Asistencia

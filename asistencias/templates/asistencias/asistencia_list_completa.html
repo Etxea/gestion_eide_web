@@ -40,22 +40,7 @@
         {% include "pagination/pagination.html" %}
 
     </div>
-    <div class="col-md-2 col-xs-12">
-        <h4>Filtar por curso</h4>
-        <ul>
-            <li><a href="{% url 'asistencias_lista' %}">Todos</a></li>
-            {% for curso in lista_cursos %}
-            <li><a href="{% url 'asistencias_lista_curso' curso.id %}">{{curso.nombre}}</a></li>
-            {% endfor %}
-        </ul>
-        <h4>Filtar por usuario</h4>
-        <ul>
-            <li><a href="{% url 'asistencias_lista' %}">Todos</a>|<a href="{% url 'asistencias_mi_lista' %}">Mios</a></li>
-            {% for usuario in lista_usuarios %}
-            <li><a href="{% url 'asistencias_lista_usuario' usuario.id %}">{{usuario.username}}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% include "asistencias/_sidebar.html" %}
 
 </div>
 

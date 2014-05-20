@@ -1,0 +1,25 @@
+<div class="col-md-2 col-xs-12">
+        <h4>Filtar por curso</h4>
+        <ul>
+            <li><a href="{% url 'asistencias_lista' %}">Todos</a></li>
+            {% for curso in lista_cursos %}
+            <li><a href="{% url 'asistencias_lista_curso' curso.id %}">{{curso.nombre}}</a></li>
+            {% endfor %}
+        </ul>
+        {% if request.user.is_staff %}
+        <h4>Filtar por usuario</h4>
+        <ul>
+            <li><a href="{% url 'asistencias_lista' %}">Todos</a>
+            {% for usuario in lista_usuarios %}
+            <li><a href="{% url 'asistencias_lista_profesor' usuario.id %}">{{usuario.username}}</a></li>
+            {% endfor %}
+        </ul>
+        <h4>Filtar por Empresa</h4>
+        <ul>
+            <li><a href="{% url 'asistencias_lista' %}">Todas</a>
+            {% for cliente in lista_clientes %}
+            <li><a href="{% url 'asistencias_lista_cliente' cliente.id %}">{{cliente.nombre}}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>

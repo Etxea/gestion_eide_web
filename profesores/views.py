@@ -1,3 +1,4 @@
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -17,3 +18,24 @@ class ProfesorCreateView(CreateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ProfesorCreateView, self).dispatch(*args, **kwargs)
+
+
+class ProfesorDetailView(DetailView):
+    model = Profesor
+    template_name = "profesores/profesor_detail.html"
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProfesorDetailView, self).dispatch(*args, **kwargs)
+
+
+class ProfesorUpdateView(UpdateView):
+    model = Profesor
+    form_class = ProfesorChangeForm
+    template_name = "profesores/profesor_update_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("profesores_lista")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProfesorUpdateView, self).dispatch(*args, **kwargs)
