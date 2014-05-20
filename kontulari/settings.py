@@ -31,7 +31,7 @@ TIME_ZONE = "UTC"
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-es"
 
 SITE_ID = int(os.environ.get("SITE_ID", 1))
 
@@ -125,11 +125,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.staticfiles",
-    
+
     # theme
     "bootstrapform",
     "pinax_theme_bootstrap",
-    
+
     # external
     "account",
     "eventlog",
@@ -138,11 +138,13 @@ INSTALLED_APPS = [
     "south",
     "tastypie",
     "bootstrap3_datetime",
-    
+
     # project
     "kontulari",
     "clientes",
     "horas",
+    "profesores",
+    "cursos",
 ]
 
 # A sample logging configuration. The only tangible logging

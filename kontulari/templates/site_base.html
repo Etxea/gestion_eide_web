@@ -23,10 +23,16 @@
 <ul class="nav navbar-nav">
 
     <li id="partes" >
-        <a href="{% url 'cliente_lista' %}">Clientes</a>
+        <a href="{% url 'cliente_lista' %}">Empresas</a>
     </li>
-    <li id="partes" >
-        <a href="{% url 'partes_lista' %}">Partes</a>
+    <li id="Asistencias" >
+        <a href="{% url 'partes_lista' %}">Asistencias</a>
+    </li>
+    <li id="Profesors" >
+        <a href="#">Profesores</a>
+    </li>
+    <li id="Cursos" >
+        <a href="{% url 'cursos_lista' %}">Cursos</a>
     </li>
 </ul>
 {% endif %}

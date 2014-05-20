@@ -17,7 +17,9 @@ urlpatterns = patterns("",
     url(r"^accounts/", include("account.urls")),
     url(r"^clientes/", include("clientes.urls")),
     url(r"^horas/", include("horas.urls")),
-    url(r'^api/', include(parte_resource.urls)),
+    url(r"^profesores/", include("profesores.urls")),
+    url(r"^cursos/", include("cursos.urls")),
+    #url(r'^api/', include(parte_resource.urls)),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
