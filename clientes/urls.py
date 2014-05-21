@@ -9,6 +9,6 @@ from views import *
 urlpatterns = patterns('',
     url(r'^$', login_required(ListView.as_view(model=Cliente)),name="cliente_lista"),
     url(r'nuevo$',login_required(CreateView.as_view(model=Cliente)), name="cliente_nuevo"),
-    url(r'(?P<pk>\d+)/$',login_required(DetailView.as_view(model=Cliente)), name="cliente_detalle"),
     url(r'editar/(?P<pk>\d+)/$',login_required(UpdateView.as_view(model=Cliente)), name="cliente_editar"),
+    url(r'(?P<pk>\d+)/$',login_required(DetailView.as_view(model=Cliente)), name="cliente_detalle"),
 )

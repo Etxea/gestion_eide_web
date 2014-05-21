@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>{% trans "Cliente" %} {{object.nombre}}</h1>
+    <h1>{% trans "Cliente" %} {{object.nombre}} <a href="{% url 'cliente_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a> </h1>
 
     <table class="table">
         <tr>
@@ -24,6 +24,48 @@
         </tr>
 
     </table>
-    <a href="{% url 'cliente_editar' object.id %}">Editar</a>
+    <h3>Cursos</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for curso in object.curso_set.all %}
+            <tr>
+
+                <td><a href="{{curso.get_absolute_url}}">{{ curso.nombre }}</a></td>
+                <td>{{curso.inicio}}</td>
+                <td>{{curso.fin}}</td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <h3>Facturas</h3>
+        <table class="table">
+            <thead>
+                <th>Numero</th>
+                <th>Fecha</th>
+                <th>Importe</th>
+                <th>Borrador</th>
+                <th>Pagada</th>
+            </thead>
+            <tbody>
+                {% for factura in object.factura_set.all %}
+                <tr>
+                    <td> <a href="{{ factura.get_absolute_url }}">{{ factura.numero }}</a> </td>
+                    <td>{{ factura.fecha }}</td>
+                    <td>{{ factura.total }}</td>
+                    <td>{{ factura.borrador }}</td>
+                    <td>{{ factura.pagada }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
 
 {% endblock %}
