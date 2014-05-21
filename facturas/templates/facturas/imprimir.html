@@ -1,17 +1,28 @@
-{% extends "site_base.html"%}
-
-{% load i18n %}
 {% load staticfiles %}
 
-{% block body %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Factura #{{factura.numero}}</title>
+    <link rel="stylesheet" href='{% static "css/bootstrap_invoice.css" %}'>
+    <style>
+    @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+    body, h1, h2, h3, h4, h5, h6{
+        font-family: 'Bree Serif', serif;
+    }
+    </style>
+</head>
+<body>
 
-
+    <div class="container">
 
         <div class="row">
             <div class="col-xs-6">
               <h1>
                 <a href="https://twitter.com/tahirtaous">
                   <img src='{% static "logo_4581.gif" %}'>
+
                 </a>
               </h1>
             </div>
@@ -75,7 +86,29 @@
                 <td class="text-right">{{concepto.total}}€</td>
             </tr>
             {% endfor %}
-
+            <!--
+          <tr>
+            <td>Article</td>
+            <td><a href="#">Title of your article here</a></td>
+            <td class="text-right">-</td>
+             <td class="text-right">$200.00</td>
+              <td class="text-right">$200.00</td>
+          </tr>
+          <tr>
+            <td>Template Design</td>
+            <td><a href="#">Details of project here</a></td>
+            <td class="text-right">10</td>
+             <td class="text-right">75.00</td>
+              <td class="text-right">$750.00</td>
+          </tr>
+          <tr>
+            <td>Development</td>
+            <td><a href="#">WordPress Blogging theme</a></td>
+            <td class="text-right">5</td>
+             <td class="text-right">50.00</td>
+              <td class="text-right">$250.00</td>
+          </tr>
+          -->
         </tbody>
       </table>
 
@@ -133,5 +166,7 @@
           </div>
         </div>
 
+    </div>
 
-{% endblock %}
+</body>
+</html>

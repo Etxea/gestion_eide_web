@@ -18,6 +18,7 @@ urlpatterns = patterns("",
     url(r"^asistencias/", include("asistencias.urls")),
     url(r"^profesores/", include("profesores.urls")),
     url(r"^cursos/", include("cursos.urls")),
+    url(r"^facturas/", include("facturas.urls")),
     #url(r'^api/', include(parte_resource.urls)),
 )
 

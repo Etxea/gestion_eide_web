@@ -145,6 +145,7 @@ INSTALLED_APPS = [
     "asistencias",
     "profesores",
     "cursos",
+    "facturas",
 ]
 
 # A sample logging configuration. The only tangible logging

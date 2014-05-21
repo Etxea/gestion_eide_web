@@ -3,25 +3,37 @@
 {% load i18n %}
 
 {% block body %}
-<table>
+<table class="table">
     <thead>
         <tr>
-        <td>Id</td>
-        <td>Nombre</td>
-        <td>Apellido</td>
+        <td>Numero</td>
+        <td>Fecha</td>
+        <td>Cliente</td>
+        <td>Total</td>
+        <td>Borrador</td>
+        <td>Pagada</td>
+        <td>Acciones</td>
         </tr>
     </thead>
     <tbody>
     {% for factura in object_list %}
     <tr>
-    <td> <a href="{% url factura_detalle factura.id %}">{{ factura.id }}</a> </td>
+    <td> <a href="{{ factura.get_absolute_url }}">{{ factura.numero }}</a> </td>
     <td>{{ factura.fecha }}</td>
+    <td>{{ factura.cliente }}</td>
     <td>{{ factura.total }}</td>
+    <td>{{ factura.borrador }}</td>
+    <td>{{ factura.pagada }}</td>
+    <td>
+        <a href="{% url 'factura_detalle' factura.id %}">Ver</a>
+        <a href="{% url 'factura_imprimir' factura.id %}">Imprimir</a>
+        <a href="{% url 'factura_editar' factura.id %}">Editar</a>
+    </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
 
-    <a href="{% url factura_nueva %}">Nueva</a>
+    <a href="{% url 'factura_nueva' %}">Nueva</a>
 
 {% endblock %}

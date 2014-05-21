@@ -1,13 +1,13 @@
-from django.conf.urls.defaults import *
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
-from models import Factura, Concepto
+from django.conf.urls import patterns, include, url
+from views import *
 
 urlpatterns = patterns('',
-    url(r'concepto/add$',CreateView.as_view(model=Concepto), name="concepto_nuevo"),
-    url(r'(?P<pk>\d+)/$',DetailView.as_view(model=Factura), name="factura_detalle"),
-    url(r'add/$',CreateView.as_view(model=Factura), name="factura_nueva"),
-    url(r'^$', ListView.as_view(model=Factura),name="factura_lista"),
-
+    url(r'concepto/add$',ConceptoCreateView.as_view(), name="concepto_nuevo"),
+    url(r'editar/(?P<pk>\d+)/$',FacturaUpdateView.as_view(), name="factura_editar"),
+    url(r'ver/(?P<pk>\d+)/$',DetailView.as_view(model=Factura), name="factura_detalle"),
+    url(r'imprimir/(?P<pk>\d+)/$',FacturaImprimir.as_view(), name="factura_imprimir"),
+    url(r'nueva/$',FacturaCreateView.as_view(), name="factura_nueva"),
+    url(r'^$', FacturaListView.as_view(),name="factura_lista"),
 )
 
 
