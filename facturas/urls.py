@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     url(r'ver/(?P<pk>\d+)/$',DetailView.as_view(model=Factura), name="factura_detalle"),
     url(r'imprimir/(?P<pk>\d+)/$',FacturaImprimir.as_view(), name="factura_imprimir"),
     url(r'nueva/$',FacturaCreateView.as_view(), name="factura_nueva"),
-    url(r'^$', FacturaListView.as_view(),name="factura_lista"),
+    url(r'^$', FacturaListView.as_view(),name="facturas_lista"),
 )
 
 

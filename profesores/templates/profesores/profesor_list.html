@@ -27,10 +27,7 @@
                 <td>{{ profesor.telefono }}</td>
                 <td>{{ profesor.get_horas_pendientes }}</td>
                 <td>
-
-                    <a class="btn btn-mini btn-info" href="{% url 'asistencia_lista_profesor' profesor.id %}" alt="Ver Asistencias" >
-                        <i class="icon-eye-open"></i>
-                    </a>
+                    <a href="{% url 'profesor_editar' profesor.user.id %}">editar</a>
                 </td>
             </tr>
             {% endfor %}
