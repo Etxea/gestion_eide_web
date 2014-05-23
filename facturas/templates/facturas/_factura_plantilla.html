@@ -1,0 +1,130 @@
+{% load staticfiles %}
+
+<div class="row">
+            <div class="col-xs-2 col-xs-offset-5">
+              <h1>
+                <a href="https://www.eide.es">
+                  <img src='{% static "logo_4581.gif" %}'>
+                </a>
+              </h1>
+            </div>
+</div>
+
+<div class="row">
+            <div class="col-xs-6 text-right col-xs-offset-6">
+              <h1><small>Factura #{{factura.numero}}</small></h1>
+            </div>
+        </div>
+
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4>Notas</h4>
+                      </div>
+                      <div class="panel-body">
+                        <p>
+
+                        </p>
+                      </div>
+                    </div>
+            </div>
+            <div class="col-xs-5 col-xs-offset-2 text-right">
+              <div class="panel panel-default">
+                      <!-- <div class="panel-heading">
+                        <h4>Para : <a href="{{factura.cliente.get_absolute_url}}">{{factura.cliente.razon_social}}</a></h4>
+                      </div>-->
+                      <div class="panel-body">
+                        <p>
+                          <b><a href="{{factura.cliente.get_absolute_url}}">{{factura.cliente.razon_social}}</a></b><br/>
+                          {{factura.cliente.NIF}} <br>
+                          {{factura.cliente.direccion}} <br>
+                        </p>
+                      </div>
+                    </div>
+            </div>
+          </div> <!-- / end client details section -->
+
+        <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th><h4>Concepto</h4></th>
+            <!-- <th><h4>Description</h4></th> -->
+            <th><h4>Horas/Cantidad/Qty</h4></th>
+            <th><h4>Precio</h4></th>
+            <th><h4>Sub Total</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for concepto in factura.concepto_set.all %}
+            <tr>
+                <td>{{concepto.nombre}}</td>
+                <!-- <td><a href="#">Title of your article here</a></td>-->
+                <td class="text-right">{{concepto.cantidad}}</td>
+                <td class="text-right">{{concepto.precio}}€</td>
+                <td class="text-right">{{concepto.total}}€</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+
+        <div class="row text-right">
+            <div class="col-xs-2 col-xs-offset-8">
+                <p>
+                    <strong>
+                        Sub Total : <br>
+                        IVA : <br>
+                        Total : <br>
+                    </strong>
+                </p>
+            </div>
+            <div class="col-xs-2">
+                <strong>
+                    {{factura.subtotal}}€ <br>
+                    {{factura.iva}}% <br>
+                    {{factura.total}}€ <br>
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <br /><br /><br />
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h4>Datos Bancarios</h4>
+              </div>
+              <div class="panel-body">
+
+                <p>Cuenta Bancaria : {{empresa.CUENTA}}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+           <div class="span7">
+              <div class="panel panel-info">
+                  <!--
+                <div class="panel-heading">
+                  <h4>Detalles de contacto</h4>
+                </div>
+                -->
+                <div class="panel-body">
+                  <p>
+                    Direccion : {{empresa.DIRECION}} <br>
+                    Email : {{empresa.email}}
+                    Teléfono : {{empresa.TELEFONO}}
+                    Web  : <a href="http://{{empresa.WEB}}">{{empresa.WEB}}</a>
+                  </p>
+                  <h4>El pago será por: {{factura.get_forma_pago_display}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

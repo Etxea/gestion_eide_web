@@ -25,9 +25,10 @@
     <td>{{ factura.borrador }}</td>
     <td>{{ factura.pagada }}</td>
     <td>
-        <a href="{% url 'factura_detalle' factura.id %}">Ver</a>
-        <a href="{% url 'factura_imprimir' factura.id %}">Imprimir</a>
-        <a href="{% url 'factura_editar' factura.id %}">Editar</a>
+        <a href="{% url 'factura_detalle' factura.id %}"><span class="glyphicon glyphicon-search"></span></a>
+        <a href="{% url 'factura_imprimir' factura.id %}"><span class="glyphicon glyphicon-print"></span></a>
+        <a href="{% url 'factura_editar' factura.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="{% url 'factura_borrar' factura.id %}"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
     </tr>
     {% endfor %}

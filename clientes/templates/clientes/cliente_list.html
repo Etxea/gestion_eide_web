@@ -15,6 +15,7 @@
                 <td>Email</td>
                 <td>Telefono</td>
                 <td>H. Pendientes</td>
+                <td>Cursos</td>
                 <td>Acciones</td>
                 </tr>
             </thead>
@@ -26,8 +27,8 @@
                 <td>{{ cliente.email }}</td>
                 <td>{{ cliente.telefono }}</td>
                 <td>{{ cliente.get_horas_pendientes }}
-                <a class="btn btn-mini btn-info" href="{% url 'asistencias_lista_cliente' cliente.id %}" alt="Ver asistencias del cliente" >
-                    <i class="glyphicon glyphicon-eye-open"></i>
+                <a href="{% url 'asistencias_lista_cliente' cliente.id %}" alt="Ver asistencias del cliente" >
+                    <span class="glyphicon glyphicon-eye-open"></span>
                 </a>
                 </td>
                 <td>
@@ -36,16 +37,21 @@
                         <tr>
                             <td>{{curso.nombre}}</td>
                             <td>
-                                <a class="btn btn-mini btn-info" href="{% url 'asistencia_nueva_curso' curso.id %}" alt="Nuevo asistencia" >
+                                <a href="{% url 'asistencia_nueva_curso' curso.id %}" alt="Nuevo asistencia" >
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </a>
-                                <a class="btn btn-mini btn-info" href="{% url 'asistencias_lista_curso' curso.id %}" alt="Ver asistencias" >
+                                <a href="{% url 'asistencias_lista_curso' curso.id %}" alt="Ver asistencias" >
                                     <i class="glyphicon glyphicon-eye-open"></i>
                                 </a>
                             </td>
                         </tr>
                         {% endfor%}
                     </table>
+                </td>
+                <td>
+                    <a href="{% url 'cliente_detalle' cliente.id %}"><span class="glyphicon glyphicon-search"></span></a>
+                    <a href="{% url 'cliente_editar' cliente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{% url 'cliente_borrar' cliente.id %}"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
             {% endfor %}

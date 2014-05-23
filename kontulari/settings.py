@@ -196,6 +196,22 @@ AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",
 ]
 
+EMPRESA = {
+    "CIF": "BXXXXXXXX",
+    "DIRECION": "C/Tal Pueblo CP Ciudad Provinca",
+    "NOMBRE": "Empresa",
+    "TELEFONO": "XXX XX XX XX",
+    "RAZON_SOCIAL": "Empresa S.L",
+    "EMAIL": "email@empresa.es",
+    "WEB": "http://empresa.es",
+    "IVA":0,
+    "RETENCION":0,
+    "FORMA_PAGO": 1,
+    "CUENTA": "0000-0000-00-00000000"
+    }
+
+
+
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
 try:

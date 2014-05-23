@@ -1,0 +1,20 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+
+<h2>Confirme el borrrado de la factura {{object.numero}}</h2>
+
+{% if not object.borrador %}
+<div class="alert alert-danger">
+    Atención! Esta factura NO es un borrador
+</div>
+{% endif %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="alert alert-warning">¿Esta segurio de que quere borrar la factura?</div>
+    <input type="submit" value="Estoy seguro de borrar la factura" />
+</form>
+
+{% endblock %}

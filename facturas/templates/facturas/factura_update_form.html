@@ -1,0 +1,66 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block extra_script %}
+
+<!-- para el datepicker -->
+{{ form.media }}
+
+<script>
+    function calcular_total_concepto() {
+        console.log("Actualizando el total");
+        var total = $("#concepto_form").find("#id_precio").val()*$("#concepto_form").find("#id_cantidad").val();
+        descuento = total*$("#concepto_form").find("#id_descuento").val()/100;
+        total = total - descuento;
+        $("#concepto_form").find("#id_total").val(total);
+    }
+    $(function() {
+        $("#factura_form").find("#id_subtotal").attr('readonly', true);
+        $("#factura_form").find("#id_total").attr('readonly', true);
+        $("#concepto_form").find("#id_total").attr('readonly', true);
+        $("#concepto_form").find("#id_precio").change(function() { calcular_total_concepto();});
+        $("#concepto_form").find("#id_cantidad").change(function() {calcular_total_concepto();});
+        $("#concepto_form").find("#id_descuento").change(function() {calcular_total_concepto();});
+    });
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <h1>Editar Factura</h1>
+
+    <form id="factura_form" class="form-inline" action="" method="post">{% csrf_token %}
+      {{ form | as_bootstrap }}
+      <input class="submit btn-form" type="submit" value="{% trans 'Actualizar' %}" />
+    </form>
+    <h3>Conceptos</h3>
+    <table class="table-condensed">
+        <thead>
+          <tr>
+            <th><h4>Concepto</h4></th>
+            <th><h4>Horas/Cantidad</h4></th>
+            <th><h4>Precio Unidad</h4></th>
+            <th><h4>Total</h4></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for concepto in object.concepto_set.all %}
+            <tr>
+                <td>{{concepto.nombre}}</td>
+                <td class="text-right">{{concepto.cantidad}}</td>
+                <td class="text-right">{{concepto.precio}}€</td>
+                <td class="text-right">{{concepto.total}}€</td>
+                <td><a href='{% url "concepto_borrar" concepto.id %}'><span class="glyphicon glyphicon-trash"></span></a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+    <form id="concepto_form" class="form form-inline" action='{% url "concepto_nuevo" %}' method="post">{% csrf_token %}
+        {{ concepto_form | as_bootstrap }}
+      <input class="submit btn-form" type="submit" value="Añadir Concepto" />
+    </form>
+</div>
+{% endblock %}
