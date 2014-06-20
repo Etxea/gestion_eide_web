@@ -34,7 +34,14 @@ class FacturaCreateView(CreateView):
     def get_initial(self):
         super(FacturaCreateView, self).get_initial()
         user = self.request.user
-        self.initial = {"owner":user.id,"iva":settings.EMPRESA["IVA"]}
+        #Intetamos generar el numero
+        numero = "XXXXXXX"
+        try:
+            last_number = int(Factura.objects.last().numero)
+            numero = last_number +1
+        except:
+            pass
+        self.initial = {"owner":user.id,"iva":settings.EMPRESA["IVA"],"numero": numero}
         print self.initial
         return self.initial
 
