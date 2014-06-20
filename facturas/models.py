@@ -20,7 +20,7 @@ IVA = (
 
 class Factura(models.Model):
     numero = models.CharField(max_length=25)
-    fecha = models.DateField(auto_now_add=True)
+    fecha = models.DateField()
     cliente = models.ForeignKey(Cliente)
     descuento = models.DecimalField(max_digits=2,decimal_places=0,default=0)
     iva = models.DecimalField(max_digits=2,decimal_places=0,blank=True,choices=IVA,default=settings.EMPRESA["IVA"])

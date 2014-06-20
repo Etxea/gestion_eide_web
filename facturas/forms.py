@@ -16,7 +16,7 @@ class FacturaCreateForm(ModelForm):
             'fecha' : DateTimePicker(options={"format": "YYYY-MM-DD", "pickTime": False}),
             'owner' : forms.HiddenInput(),
         }
-        exclude = ['pagada','borrador']
+        exclude = ['pagada','borrador','iva','retencion','descuento','forma_pago','total','subtotal']
 
 class FacturaUpdateForm(ModelForm):
     class Meta:

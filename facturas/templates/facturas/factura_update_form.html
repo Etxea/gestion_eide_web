@@ -30,37 +30,104 @@
 <div class="row">
     <h1>Editar Factura</h1>
 
-    <form id="factura_form" class="form-inline" action="" method="post">{% csrf_token %}
-      {{ form | as_bootstrap }}
-      <input class="submit btn-form" type="submit" value="{% trans 'Actualizar' %}" />
+    <form id="factura_form" class="form" action="" method="post">{% csrf_token %}
+{#      {{ form | as_bootstrap }} #}
+      <div class="row">
+            <div class="col-xs-6 text-right col-xs-offset-6">
+              <h1><small>Factura #{{form.numero}}</small></h1>
+            </div>
+        </div>
+
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4>Notas</h4>
+                      </div>
+                      <div class="panel-body">
+                        {{form.notas}}
+                        </p>
+                      </div>
+                    </div>
+            </div>
+            <div class="col-xs-5 col-xs-offset-2 text-right">
+              <div class="panel panel-default">
+                      <!-- <div class="panel-heading">
+                        <h4>Para : <a href="{{factura.cliente.get_absolute_url}}">{{factura.cliente.razon_social}}</a></h4>
+                      </div>-->
+                      <div class="panel-body">
+                        <p>
+                          <b><a href="{{object.cliente.get_absolute_url}}">{{object.cliente.razon_social}}</a></b><br/>
+                          {{object.cliente.NIF}} <br>
+                          {{object.cliente.direccion}} <br>
+                        </p>
+                      </div>
+
+                    </div>
+            </div>
+                  <input class="submit btn-form" type="submit" value="{% trans 'Actualizar' %}" />
     </form>
-    <h3>Conceptos</h3>
-    <table class="table-condensed">
+          </div> <!-- / end client details section -->
+
+
+     <table class="table table-bordered">
         <thead>
           <tr>
             <th><h4>Concepto</h4></th>
-            <th><h4>Horas/Cantidad</h4></th>
-            <th><h4>Precio Unidad</h4></th>
-            <th><h4>Total</h4></th>
-            <th></th>
+            <!-- <th><h4>Description</h4></th> -->
+            <th><h4>Horas/Cantidad/Qty</h4></th>
+            <th><h4>Precio</h4></th>
+            <th><h4>Descuento</h4></th>
+            <th><h4>Sub Total</h4></th>
           </tr>
         </thead>
         <tbody>
             {% for concepto in object.concepto_set.all %}
             <tr>
                 <td>{{concepto.nombre}}</td>
+                <!-- <td><a href="#">Title of your article here</a></td>-->
                 <td class="text-right">{{concepto.cantidad}}</td>
                 <td class="text-right">{{concepto.precio}}€</td>
+                <td class="text-right">{{concepto.descuento}}%</td>
                 <td class="text-right">{{concepto.total}}€</td>
-                <td><a href='{% url "concepto_borrar" concepto.id %}'><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
             {% endfor %}
+            <tr>
+                <form id="concepto_form"  action='{% url "concepto_nuevo" %}' method="post">{% csrf_token %}
+                <td>{{concepto_form.nombre}}</td>
+                <td>{{concepto_form.precio}}</td>
+                <td>{{concepto_form.cantidad}}</td>
+                <td>{{concepto_form.descuento}}</td>
+                <td>{{concepto_form.total}} <input class="submit btn-form" type="submit" value="Añadir Concepto" /></td>
+
+
+                </form>
+            </tr>
 
         </tbody>
       </table>
-    <form id="concepto_form" class="form form-inline" action='{% url "concepto_nuevo" %}' method="post">{% csrf_token %}
-        {{ concepto_form | as_bootstrap }}
-      <input class="submit btn-form" type="submit" value="Añadir Concepto" />
-    </form>
+
+        <div class="row text-right">
+            <div class="col-xs-2 col-xs-offset-8">
+                <p>
+                    <strong>
+                        Sub Total : <br>
+                        IVA : <br>
+                        Total : <br>
+                    </strong>
+                </p>
+            </div>
+            <div class="col-xs-2">
+                <strong>
+                    {{object.subtotal}}€ <br>
+                    {{object.iva}}% <br>
+                    {{object.total}}€ <br>
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <br /><br /><br />
+        </div>
+
 </div>
 {% endblock %}
