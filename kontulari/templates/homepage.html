@@ -15,11 +15,11 @@
     <h3>Acciones Rápidas</h3>
     {% if request.user.is_staff %}
     <div class="btn-group">
-        <a href="{% url 'asistencia_nueva' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>
+        <!-- <a href="{% url 'asistencia_nueva' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>-->
         <a href="{% url 'asistencias_lista' %}" class="btn btn-default btn-lg" >Asistencia</a>
         <a href="{% url 'cliente_lista' %}" class="btn btn-default btn-lg" >Clientes</a>
         <a href="{% url 'profesores_lista' %}" class="btn btn-default btn-lg" >Profesores</a>
-        <a href="{% url 'about' %}" class="btn btn-default btn-lg" >Acerca de...</a>
+        <a href="{% url 'facturas_lista' %}" class="btn btn-default btn-lg" >Facturas</a>
     </div>
     {% else %}
     <a href="{% url 'asistencia_nueva' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>
@@ -28,7 +28,7 @@
 
 {% else %}
 {% url "account_login" as login_url %}
-    <p> {% blocktrans %}Haz <a href="{{ login_url }}" class="btn btn-default">Log In</a> .{% endblocktrans %}</p>
+    <p> {% blocktrans %}Esta web no es de acceso publico, para entrar necesitas hacer <a href="{{ login_url }}" class="btn btn-default">Log In</a> .{% endblocktrans %}</p>
 {% endif %}
 </div>
 
@@ -36,7 +36,7 @@
     <!-- <h1>{% trans "Bienvenido a Kontulari.eu" %}</h1> -->
     <p>
         {% url "about" as about_url %}
-        <b>Kontulari</b> es un software de gestión para la pymes, podrás gestionar clientes asistencias y bonos de mantenimiento y generar facturas. <a href="{{about_url}}"Saber más</a>.
+        Esta web es una instalación de <b>Kontulari</b>. <b>Kontulari</b> es un software de gestión para la pymes desarrolado por etxea.net. Con <b>Kontulari</b> podrás gestionar el día a día de tu empresa y generar facturas. <a href="{{about_url}}"Saber más</a>.
     </p>
 </div>
 {% endblock %}
