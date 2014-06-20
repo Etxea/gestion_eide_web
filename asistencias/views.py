@@ -81,6 +81,16 @@ class MisAsistencias(AsistenciaLista):
         return Asistencia.objects.filter(usuario=self.request.user).order_by('-fecha')
 
 
+class AsistenciaListaFecha(AsistenciaLista):
+    template_name = "asistencias/_tabla_asistencias.html"
+    
+    def get_queryset(self):
+        inicio = "%s-%s-%s"%(self.kwargs['inicio_ano'],self.kwargs['inicio_mes'],self.kwargs['inicio_dia'])
+        fin = "%s-%s-%s"%(self.kwargs['fin_ano'],self.kwargs['fin_mes'],self.kwargs['fin_dia'])
+        print "Listamos las asistencia entra %s y %s"%(inicio,fin)
+        return Asistencia.objects.filter(fecha__gte=inicio).filter(fecha__lte=fin).order_by('-fecha')
+
+
 class AsistenciaNueva(CreateView):
     model = Asistencia
     form_class = AsistenciaForm

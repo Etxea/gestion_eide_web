@@ -2,10 +2,40 @@
 
 {% load i18n %}
 
+{% block extra_script %}
+<!-- para el datepicker -->
+<link href="/site_media/static/bootstrap3_datetime/css/bootstrap-datetimepicker.min.css" type="text/css" media="all" rel="stylesheet" />
+<script type="text/javascript" src="/site_media/static/bootstrap3_datetime/js/moment.min.js"></script>
+<script type="text/javascript" src="/site_media/static/bootstrap3_datetime/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/site_media/static/bootstrap3_datetime/js/locales/bootstrap-datetimepicker.es.js"></script>
+
+<script>
+    function cambiar_fecha() {
+        inicio = $("#fecha_inicio").val();
+        fin = $("#fecha_fin").val();
+        console.log(inicio);
+        console.log(fin);
+        //si tenemos inicio y fin recargamos con esas fechas
+        if ( inicio != "" && fin != "" ) {
+            console.log("Recargamos la tabla");
+            array_inicio = inicio.split("-");
+            array_fin = fin.split("-");
+            $("#lista_asistencias").load("/asistencias/fecha/"+array_inicio[0]+"/"+array_inicio[1]+"/"+array_inicio[2]+"/"+array_fin[0]+"/"+array_fin[1]+"/"+array_fin[2]+"/")
+        }
+        
+    }
+    $(function() {
+        $("#fecha_inicio").datetimepicker({"pickTime": false, "weekStart": 1, "language": "es-es", "format": "YYYY-MM-DD"});
+        $("#fecha_fin").datetimepicker({"pickTime": false, "weekStart": 1, "language": "es-es", "format": "YYYY-MM-DD"});
+    });
+
+</script>
+
+{% endblock %}
 {% block body %}
 {% include "asistencias/_list_buttons.html" %}
 <div class="row">
-    <div class="col-md-10 col-xs-12">
+    <div class="col-md-10 col-xs-12" id="lista_asistencias" >
         <table class="table">
             <thead>
                 <tr>

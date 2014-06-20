@@ -6,6 +6,14 @@
             <li><a href="{% url 'asistencias_lista_curso' curso.id %}">{{curso.nombre}}</a></li>
             {% endfor %}
         </ul>
+        <h4>Filtar por fecha</h4>
+        <form class="form-inline" role="form">
+            
+                <input id="fecha_inicio" class="form-control" placeholder="inicio" onchange="cambiar_fecha();"/><br />
+            
+                <input id="fecha_fin" class="form-control" placeholder="fin" onchange="cambiar_fecha();"/>
+            
+        </form>
         {% if request.user.is_staff %}
         <h4>Filtar por usuario</h4>
         <ul>
