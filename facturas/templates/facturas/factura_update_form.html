@@ -93,7 +93,8 @@
             </tr>
             {% endfor %}
             <tr>
-                <form id="concepto_form"  action='{% url "concepto_nuevo" %}' method="post">{% csrf_token %}
+                <form id="concepto_form"  action='{% url "concepto_nuevo" object.id %}' method="post">{% csrf_token %}
+                <input id="id_factura" type="hidden" step="any" name="factura" value="{{ object.id }}">
                 <td>{{concepto_form.nombre}}</td>
                 <td>{{concepto_form.precio}}</td>
                 <td>{{concepto_form.cantidad}}</td>

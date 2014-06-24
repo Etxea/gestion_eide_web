@@ -29,8 +29,6 @@ class FacturaUpdateForm(ModelForm):
 class ConceptoForm(ModelForm):
     class Meta:
         model = Concepto
-        widgets = {
-            'factura': forms.HiddenInput()
-        }
+        exclude = ['factura']
 
 ConceptoFormset = modelformset_factory(Concepto,form=ConceptoForm)

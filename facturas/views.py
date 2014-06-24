@@ -94,6 +94,19 @@ class ConceptoCreateView(CreateView):
         return super(ConceptoCreateView, self).dispatch(*args, **kwargs)
     def get_success_url(self):
         return reverse_lazy("factura_editar", kwargs = {'pk' : self.object.factura.id, })
+    
+    def get_initial(self):
+        super(ConceptoCreateView, self).get_initial()
+        self.initial = {"factura":self.kwargs['factura_id']}
+        return self.initial
+        
+    def form_valid(self, form):
+        factura = Factura.objects.get(id=self.kwargs['factura_id'])
+        self.object = form.save(commit=False)
+        self.object.factura = factura
+        self.object.save()
+        print "Concepto anadido a factura",self.kwargs['factura_id']
+        return super(ConceptoCreateView, self).form_valid(form)
 
 class ConceptoDeleteView(DeleteView):
     model = Concepto
