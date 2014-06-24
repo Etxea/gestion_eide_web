@@ -3,15 +3,20 @@
 {% load i18n %}
 
 {% block body %}
-
+    {% if accion == "crear" %}
     <h1>{% trans "Nuevo Cliente" %}</h1>
-
-    <form action="{% url 'cliente_nuevo' %}" method="post">{% csrf_token %}
+    
+    {% else %}
+    <h1>{% trans "Editar Cliente" %}</h1>
+    
+    {% endif %}
+    <form action="" method="post">
+      {% csrf_token %}
       {{ form|as_bootstrap }}    
       <br />  
       <div class="form-actions">
-      <a href="{% url 'cliente_lista' %}" class="btn">Go back</a>
-      <button type="submit" class="btn btn-primary">Save changes</button>
-    </div>
+      <a href="{% url 'cliente_lista' %}" class="btn">{% trans "Go back" %}</a>
+      <button type="submit" class="btn btn-primary">{% trans "Save changes" %}</button>
+      </div>
     </form>
 {% endblock %}

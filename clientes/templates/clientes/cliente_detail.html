@@ -24,6 +24,45 @@
         </tr>
 
     </table>
+    <h3>Contactos</h3>
+    <table class="table">
+        <thead>
+            <th>Nombre</th><th>Email</th><th>Telefono</th><th>Funcion</th>
+        </thead>
+        <tbody>
+        {% for contacto in object.clientecontacto_set.all %}
+            <tr>
+                <td>{{contacto.nombre}}</td><td>{{contacto.email}}</td><td>{{contacto.telefono}}</td><td>{{contacto.funcion}}</td><td><a href="{% url 'cliente_contacto_del' contacto.id %}" ><span class="glyphicon glyphicon-trash"></span></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalContacto">Nuevo contacto</button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="ModalContacto" tabindex="-1" role="dialog" aria-labelledby="ModalContactoLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="ModalContactoLabel">Nuevo Contacto</h4>
+          </div>
+          <div class="modal-body">
+              
+              <form action="{% url 'cliente_contacto_add' object.id %}" method="post" role="form" >
+                {% csrf_token %}
+                {{contacto_form.as_p}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <h3>Cursos</h3>
         <table class="table">
             <thead>

@@ -8,8 +8,10 @@ from views import *
 
 urlpatterns = patterns('',
     url(r'^$', login_required(ListView.as_view(model=Cliente)),name="cliente_lista"),
-    url(r'nuevo$',login_required(CreateView.as_view(model=Cliente)), name="cliente_nuevo"),
-    url(r'editar/(?P<pk>\d+)/$',login_required(UpdateView.as_view(model=Cliente)), name="cliente_editar"),
+    url(r'nuevo$',ClienteCreateView.as_view(), name="cliente_nuevo"),
+    url(r'editar/(?P<pk>\d+)/$',ClienteUpdateView.as_view(), name="cliente_editar"),
     url(r'borrar/(?P<pk>\d+)/$',login_required(DeleteView.as_view(model=Cliente,success_url="/clientes/")), name="cliente_borrar"),
-    url(r'(?P<pk>\d+)/$',login_required(DetailView.as_view(model=Cliente)), name="cliente_detalle"),
+    url(r'contactos/(?P<cliente_id>\d+)/add/$',ClienteContactoCreateView.as_view(), name="cliente_contacto_add"),
+    url(r'contactos/(?P<pk>\d+)/del/$',ClienteContactoDeleteView.as_view(), name="cliente_contacto_del"),
+    url(r'ver/(?P<pk>\d+)/$',ClienteDetailView.as_view(), name="cliente_detalle"),
 )

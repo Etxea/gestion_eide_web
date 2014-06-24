@@ -34,12 +34,13 @@ class Cliente(models.Model):
     #descuento=models.DecimalField(max_digits=4,decimal_places=2,blank=True)
     notas=models.CharField(max_length=500, blank=True, default="")
     #owner=models.ForeignKey(User,default=User.objects.get(username="admin"))
-    contacto = models.ForeignKey(Contacto, blank=True,related_name="empresa",default=0)
+    
     #contacto_facturacion = models.ForeignKey(Contacto, blank=True,related_name="empresa")
     def __unicode__(self):
         return self.nombre
     def get_absolute_url(self):
-        return "/clientes/%s/"%self.id
+        #return reverse_lazy('cliente_detalle',self.id)
+        return "/clientes/ver/%d/"%self.id
     def get_horas_mes(self,ano,mes):
         return 0
         #print "Sumamos las horas del cliente %s en el %s/5s"%(self.nombre,mes,ano)
@@ -74,4 +75,7 @@ class Cliente(models.Model):
         #print "Tenemos %s:%s"%(pendiente_horas,pendiente_minutos)
         #return "%s:%s"%(pendiente_horas,pendiente_minutos)
 
+class ClienteContacto(Contacto):
+    cliente = models.ForeignKey(Cliente)
+    funcion = models.CharField(max_length=25,blank=True)
 
