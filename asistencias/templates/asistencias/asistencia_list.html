@@ -40,9 +40,9 @@
             <thead>
                 <tr>
                     <td>Fecha</td>
-                    <td>Cliente</td>
+                    <td>Empresa</td>
                     <td>Duracion</td>
-                    <td>Usuario</td>
+                    <td>profesor</td>
 
                 </tr>
             </thead>
@@ -50,11 +50,11 @@
             {% for asistencia in object_list %}
             <tr>
                 <td><a href="{{ asistencia.get_absolute_url}}">{{ asistencia.fecha }}</a></td>
-                <td><a href="{% url 'asistencia_nueva_curso' asistencia.curso.id %}">
+                <td><!--<a href="{% url 'asistencia_nueva_curso' asistencia.curso.id %}">
                         <button type="button" class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
-                    </a>
+                    </a>-->
                     {{ asistencia.curso.nombre }}({{ asistencia.curso.cliente.nombre }})
                 </td>
                 <td>{{asistencia.duracion|date:"H:i"}}</td>
