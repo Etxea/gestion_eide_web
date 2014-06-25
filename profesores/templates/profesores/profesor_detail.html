@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    <h1>{% trans "Profesor" %} {{object.user.username}}</h1>
-
+    <h1>{% trans "Profesor" %} {{object.user.username}} <a href="{% url 'profesor_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
+    
     <table class="table">
         <tr>
             <td>Nombre</td><td>{{object.user.first_name}}</td>
@@ -22,8 +22,15 @@
         <tr>
             <td>E-mail</td><td><a href="mailto:{{object.user.email}}">{{object.user.email}}</a></td>
         </tr>
-
+        <tr><td><b>Asistencias a cursos de empresas</b></td><td></td></tr>
+        {% for asistencia in object.user.asistencia_set.all %}
+        <tr>
+            <td>{{asistencia.fecha}}</td>
+            <td>{{asistencia.curso}} - {{asistencia.curso.cliente.nombre}} </td>
+            <td>{{asistencia.duracion}}</td>
+        </tr>
+        {% endfor %}
     </table>
-    <a href="{% url 'profesor_editar' object.user.id %}">Editar</a>
+    
 
 {% endblock %}
