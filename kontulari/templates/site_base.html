@@ -22,25 +22,63 @@
 {% if request.user.is_authenticated %}
 <ul class="nav navbar-nav">
     {% if request.user.is_staff %}
-    <li id="asistencias" >
-        <a href="{% url 'cliente_lista' %}">Empresas</a>
+    <li class="dropdown" id="Empresas" >
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Empresa <b class="caret"></b></a>
+    
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'cliente_lista' %}">Empresas</a>
+            </li>
+            <li id="Cursos" >
+                <a href="{% url 'cursos_lista' %}">Cursos</a>
+            </li>
+            <li id="Asistencias" >
+                <a href="{% url 'asistencias_lista' %}">Asistencias</a>
+            </li>
+            <li class="divider"></li>
+            <li id="Facturas" >
+                <a href="{% url 'facturas_lista' %}">Facturas</a>
+            </li>
+            
+        </ul>
+    </li>
+    <li class="dropdown" id="Particulaes" >
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Particules <b class="caret"></b></a>
+    
+        <ul class="dropdown-menu">
+            <li>
+                <a href="">Alumnos</a>
+            </li>
+            <li id="gruos" >
+                <a href="">Grupos</a>
+            </li>
+            <li id="notas" >
+                <a href="">Notas</a>
+            </li>
+            <li id="Asistencias" >
+                <a href="{% url 'asistencias_lista' %}">Asistencias</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="#">Cursos</a></li>
+            <li><a href="#">Libros</a></li>
+            <li><a href="#">Bancos</a></li>
+            <li><a href="#">Calendario</a></li>
+            
+            
+        </ul>
     </li>
     
-    <li id="Cursos" >
-        <a href="{% url 'cursos_lista' %}">Cursos</a>
-    </li>
 
     <li id="Profesors" >
         <a href="{% url 'profesores_lista' %}">Profesores</a>
     </li>
     
-    <li id="Facturas" >
-        <a href="{% url 'facturas_lista' %}">Facturas</a>
-    </li>
-    {% endif %}
+    
+    {% else %}
     <li id="Asistencias" >
         <a href="{% url 'asistencias_lista' %}">Asistencias</a>
     </li>
+    {% endif %}
 </ul>
 {% endif %}
 {% endblock %}
