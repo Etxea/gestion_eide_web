@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>{% trans "Cliente" %} {{object.nombre}} <a href="{% url 'cliente_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a> </h1>
+    <h1>{% trans "Cliente" %} {{object.nombre}} </h1>
 
     <table class="table">
         <tr>
@@ -23,6 +23,9 @@
         <tr>
             <td>telefono</td><td>{{object.telefono}}</td>
         </tr>
+        <tr>
+            <a href="{% url 'cliente_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        </tr>
 
     </table>
     <h3>Contactos</h3>
@@ -39,7 +42,7 @@
         </tbody>
     </table>
     
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalContacto">Nuevo contacto</button>
+    <button class="btn" data-toggle="modal" data-target="#ModalContacto"><span class="glyphicon glyphicon-plus"></span></button>
     
     <!-- Modal -->
     <div class="modal fade" id="ModalContacto" tabindex="-1" role="dialog" aria-labelledby="ModalContactoLabel" aria-hidden="true">
