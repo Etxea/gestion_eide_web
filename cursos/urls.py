@@ -9,6 +9,7 @@ from forms import *
 
 urlpatterns = patterns('',
     url(r'^$', CursosListView.as_view(),name="cursos_lista"),
+    url(r'calendario/(?P<curso_id>\d+)/(?P<ano>\d+)/(?P<mes>\d+)$',login_required(calendario_mes), name="curso_calendario_mes"),
     url(r'nuevo/$',login_required(CreateView.as_view(model=Curso,form_class = CursoForm)), name="curso_nuevo"),
     url(r'clases/(?P<cliente_id>\d+)/nueva/$',login_required(CreateView.as_view(model=Clase)), name="clase_curso_nueva"),
     url(r'clases/nueva$',login_required(CreateView.as_view(model=Clase)), name="clase_nueva"),

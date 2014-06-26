@@ -18,6 +18,7 @@
         $("#id_hora").datetimepicker({"pickDate": false, "weekStart": 1, "language": "es-es", "format": "hh:mm","minuteStepping":15,"useSeconds": false,"useCurrent":false});
         $("#id_duracion_picker").datetimepicker({"pickDate": false, "weekStart": 1, "language": "es-es", "format": "hh:mm","minuteStepping":15,"useSeconds": false,"useCurrent":false});
         $("#id_duracion").datetimepicker({"pickDate": false, "weekStart": 1, "language": "es-es", "format": "hh:mm","minuteStepping":15,"useSeconds": false,"useCurrent":false});
+        $(calendario).load("/cursos/calendario/{{object.id}}/{{object.inicio.year}}/{{object.inicio.month}}");
     });
 </script>
 {% endblock %}
@@ -29,12 +30,14 @@
         <h2>Detalles</h2>
         <table class="table">
             <tr>
-                <td>Nombre</td><td>{{object.nombre}} <a href="{% url 'curso_editar' object.id %}">Editar</a>
-                <a href="{% url 'curso_borrar' object.id %}">Borrar</a>
+                <td>Nombre</td><td>{{object.nombre}} <a href="{% url 'curso_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="{% url 'curso_borrar' object.id %}"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
             <tr>
-                <td>Empresa</td><td>{{object.cliente.nombre}}</td>
+                <td>Empresa</td><td>{{object.cliente.nombre}}
+                <a href="{% url 'cliente_detalle' object.cliente.id %}"><span class="glyphicon glyphicon-search"></span></a>
+                </td>
             </tr>
             <tr>
                 <td>Inicio</td><td>{{object.inicio}}</td>
@@ -61,8 +64,8 @@
                     <td>{{clase.hora}}</td>
                     <td>{{clase.duracion}}</td>
                     <td>{{clase.profesor.user.username}}</td>
-                    <td><a href="{% url 'clase_editar' clase.id %}">Editar</a>
-                    <a href="{% url 'clase_borrar' clase.id %}">Borrar</a>
+                    <td><a href="{% url 'clase_editar' clase.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{% url 'clase_borrar' clase.id %}"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -70,6 +73,22 @@
         </table>
     </div>
     <div class="col-md-6">
+        <style>
+            table.month {
+                width: 100%;
+            }
+            td.filled
+            {
+                
+                
+                font-weight:bold;
+            } 
+        </style>
+        <h2>Calendario</h2>
+        <a href="#" onclick='' ><span class="glyphicon glyphicon-step-backward"></span></a>
+        <a href="#" onclick='$(calendario).load("/cursos/calendario/{{object.id}}/{{object.inicio.year}}/{{object.inicio.month}}");' ><span class="glyphicon glyphicon-step-forward"></span></a>
+        
+        <div id="calendario"></div>
         <h2>Añadir clases</h2>
             <form action="{% url 'clase_curso_nueva' object.id %}" method="post">{% csrf_token %}
                 {{ clase_form|as_bootstrap }}

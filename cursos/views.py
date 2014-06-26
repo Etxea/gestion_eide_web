@@ -5,13 +5,14 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.shortcuts import render_to_response
+
+## Para el calendario
+from calendar import  Calendar
 
 from models import *
 from forms import *
 
-
-
-login_required(ListView.as_view(model=Curso))
 class CursosListView(ListView):
     model=Curso
     @method_decorator(login_required)
@@ -72,6 +73,29 @@ class ClaseCursoCreateView(ClaseCreateView):
         self.initial = {"cliente":cliente.id}
         return self.initial
 
-
+def calendario_mes(request,curso_id,ano,mes):
+    ano = int(ano)
+    mes = int(mes)
+    cal = HTMLCalendar()
+    
+    
+    dias_semana = []
+    curso = Curso.objects.get(id=curso_id)
+    for clase in curso.clase_set.all():
+        dias_semana.append(clase.dia_semana-1)
+    dias_clase = []
+    
+    
+    c = Calendar()
+    for d in c.itermonthdates(ano,mes):
+        ##print d
+        if d.weekday() in dias_semana:
+            #evitamos recibir los dias que no son del mes que toca
+            if d.month == mes:
+                dias_clase.append(d.day)
+            
+    cal = ClasesCalendar(dias_clase)
+    calendario = cal.formatmonth(ano,mes)
+    return render_to_response('cursos/mes.html', {'calendario': calendario, "ano": ano, "mes": mes})
 
 
