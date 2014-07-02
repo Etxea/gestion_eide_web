@@ -1,7 +1,7 @@
 # Create your views here.
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse_lazy
@@ -9,6 +9,16 @@ from django.conf import settings
 from models import *
 from forms import *
 from django.forms.models import inlineformset_factory
+
+
+def factura_confirmar(request,factura_id):
+    #factura = get_object_or_404(Factura, pk=factura_id)
+    factura = Factura.objects.get(id=factura_id)
+    factura.borrador = False
+    factura.save()
+    return redirect(factura)
+    
+    
 
 class FacturaListView(ListView):
     model = Factura

@@ -29,6 +29,12 @@
 {% block body %}
 <div class="row">
     <h1>Editar Factura</h1>
+    
+    {% if object.borrador != True %}
+    <div class="alert alert-danger" role="alert">
+        <b>ATENCION:</b> Estas editando una factura confirmada!!!!. Posiblemente nos ea una buena idea, ten cuidado.
+    </div>
+    {% endif %}
 
     <form id="factura_form" class="form" action="" method="post">{% csrf_token %}
 {#      {{ form | as_bootstrap }} #}
@@ -128,6 +134,9 @@
         </div>
         <div class="row">
             <br /><br /><br />
+             <form action="{% url 'factura_confirmar' object.id %}" method="get">
+            <button type="submit" >Confirmar</button>
+            </form>
         </div>
 
 </div>
