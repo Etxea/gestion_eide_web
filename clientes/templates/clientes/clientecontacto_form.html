@@ -1,0 +1,15 @@
+{% extends "site_base.html"%}
+{% load bootstrap_tags %}
+{% load i18n %}
+
+{% block body %}
+<h1>{% trans "Nuevo contacto" %}</h1>
+     <form action="" method="post" role="form" >
+                {% csrf_token %}
+                {{form.as_p}}
+        
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+            
+{% endblock %}

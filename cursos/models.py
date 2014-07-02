@@ -34,6 +34,22 @@ DIAS_SEMANA = (
     (5, _('Viernes'))
 )
 
+DURACION = (
+    (15, _('1/4 hora')),
+    (30, _('1/2 hora')),
+    (45, _('3/4 hora')),
+    (55, _('55min')),
+    (60, _('1h')),
+    (90, _('1h y 1/2')),
+    (120, _('2h')),
+    (150, _('2h y 1/2')),
+    (180, _('3h')),
+    (210, _('3h y 1/2')),
+    (240, _('4h')),
+    (270, _('4h y 1/2'))
+    
+)
+
 
 class Curso(models.Model):
     cliente = models.ForeignKey(Cliente)
@@ -49,7 +65,7 @@ class Clase(models.Model):
     curso = models.ForeignKey(Curso)
     dia_semana = models.DecimalField(decimal_places=0,max_digits=1,choices= DIAS_SEMANA,default=1)
     hora = models.TimeField()
-    duracion = models.TimeField()
+    duracion = models.DecimalField(decimal_places=0,max_digits=3, choices= DURACION,default=60)
     profesor = models.ForeignKey(Profesor)
     def get_absolute_url(self):
         return reverse_lazy("curso_detalle",args=(self.curso.id,))
