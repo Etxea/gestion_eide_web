@@ -10,7 +10,7 @@ from models import *
 from forms import *
 from django.forms.models import inlineformset_factory
 
-
+##FIXME hacer que esto este protegido
 def factura_confirmar(request,factura_id):
     #factura = get_object_or_404(Factura, pk=factura_id)
     factura = Factura.objects.get(id=factura_id)
