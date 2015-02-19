@@ -144,6 +144,7 @@ INSTALLED_APPS = [
     "clientes",
     "asistencias",
     "profesores",
+    "alumnos",
     "cursos",
     "facturas",
 ]
