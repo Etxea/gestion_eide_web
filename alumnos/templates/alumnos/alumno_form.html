@@ -4,14 +4,14 @@
 
 {% block body %}
 
-    <h1>{% trans "Nuevo Profesor" %}</h1>
+    <h1>{% trans "Nuevo Alumno" %}</h1>
 
-    <form action="{% url 'profesor_nuevo' %}" method="post">{% csrf_token %}
+    <form action="{% url 'alumno_nuevo' %}" method="post">{% csrf_token %}
       {{ form|as_bootstrap }}
       <br />
       <div class="form-actions">
-      <a href="{% url 'cliente_lista' %}" class="btn">Go back</a>
-      <button type="submit" class="btn btn-primary">Save changes</button>
+      <a href="{% url 'alumnos_lista' %}" class="btn">Atras</a>
+      <button type="submit">Guardar</button>
     </div>
     </form>
 {% endblock %}

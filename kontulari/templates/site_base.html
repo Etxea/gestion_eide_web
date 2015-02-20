@@ -22,9 +22,37 @@
 {% if request.user.is_authenticated %}
 <ul class="nav navbar-nav">
     {% if request.user.is_staff %}
+
+    <li class="dropdown" id="Particulares" >
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Particulares <b class="caret"></b></a>
+    
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'alumnos_lista' %}">Alumnos</a>
+            </li>
+            <li id="gruos" >
+                <a href="{% url 'clases_lista' %}">Grupos</a>
+            </li>
+            <li id="notas" >
+                <a href="">Notas</a>
+            </li>
+            <li id="Asistencias" >
+                <a href="{% url 'asistencias_lista' %}">Asistencias</a>
+            </li>
+            <li class="divider"></li>
+
+            <li><a href="{% url 'aulas_lista' %}">Aulas</a></li>
+            <li><a href="#">Libros</a></li>
+            <li><a href="#">Bancos</a></li>
+            <li><a href="#">Calendario</a></li>
+            
+            
+        </ul>
+    </li>
+
     <li class="dropdown" id="Empresas" >
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Empresa <b class="caret"></b></a>
-    
+
         <ul class="dropdown-menu">
             <li>
                 <a href="{% url 'cliente_lista' %}">Empresas</a>
@@ -39,35 +67,9 @@
             <li id="Facturas" >
                 <a href="{% url 'facturas_lista' %}">Facturas</a>
             </li>
-            
+
         </ul>
     </li>
-    <li class="dropdown" id="Particulaes" >
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Particules <b class="caret"></b></a>
-    
-        <ul class="dropdown-menu">
-            <li>
-                <a href="">Alumnos</a>
-            </li>
-            <li id="gruos" >
-                <a href="">Grupos</a>
-            </li>
-            <li id="notas" >
-                <a href="">Notas</a>
-            </li>
-            <li id="Asistencias" >
-                <a href="{% url 'asistencias_lista' %}">Asistencias</a>
-            </li>
-            <li class="divider"></li>
-            <li><a href="#">Cursos</a></li>
-            <li><a href="#">Libros</a></li>
-            <li><a href="#">Bancos</a></li>
-            <li><a href="#">Calendario</a></li>
-            
-            
-        </ul>
-    </li>
-    
 
     <li id="Profesors" >
         <a href="{% url 'profesores_lista' %}">Profesores</a>

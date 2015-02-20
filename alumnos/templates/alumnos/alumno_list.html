@@ -7,29 +7,34 @@
 
 <div class="row">
     <div class="col-md-10 col-xs-12">
-        <h4>Listado de profesors</h4>
+        <h4>Listado de Alumnos</h4>
         <table class="table">
             <thead>
                 <tr>
+                <td>ID</td>
+                <td>Apellido1</td>
+                <td>Apellido2</td>
                 <td>Nombre</td>
                 <td>Email</td>
-                <td>Telefono</td>
-                <td>H. Pendientes</td>
+                <td>Telefono1</td>
+
                 <td>Acciones</td>
                 </tr>
             </thead>
             <tbody>
-            {% for profesor in object_list %}
+            {% for alumno in object_list %}
             <tr>
+                <td><a href="{{alumno.get_absolute_url}}">{{ alumno.id }}</a></td>
+                <td>{{ alumno.apellido1 }}</td>
+                <td>{{ alumno.apellido2 }}</td>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.email }}</td>
+                <td>{{ alumno.telefono1 }}</td>
 
-                <td><a href="{{profesor.get_absolute_url}}">{{ profesor.user.username }}</a></td>
-                <td>{{ profesor.user.email }}</td>
-                <td>{{ profesor.telefono }}</td>
-                <td>{{ profesor.get_horas_pendientes }}</td>
                 <td>
-                    <a href="{% url 'profesor_detalle' profesor.id %}"><span class="glyphicon glyphicon-search"></span></a>
-                    <a href="{% url 'profesor_editar' profesor.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="{% url 'profesor_borrar' profesor.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="{% url 'alumno_detalle' alumno.id %}"><span class="glyphicon glyphicon-search"></span></a>
+                    <a href="{% url 'alumno_editar' alumno.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{% url 'alumno_borrar' alumno.id %}"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
             {% endfor %}
@@ -38,7 +43,7 @@
     </div>
     <div class="col-md-2">
     <h4>Acciones</h4>
-    <a href="{% url 'profesor_nuevo' %}"><button>Nuevo</button></a>
+    <a href="{% url 'alumno_nuevo' %}"><button>Nuevo</button></a>
     </div>
 </div>
 {% endblock %}

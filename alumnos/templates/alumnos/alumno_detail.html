@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>{% trans "Profesor" %} {{object.user.username}} <a href="{% url 'profesor_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
+    <h1>{% trans "Alumno" %} {{object.user.username}} <a href="{% url 'alumno_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
     
     <table class="table">
         <tr>

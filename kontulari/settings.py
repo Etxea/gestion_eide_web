@@ -144,9 +144,11 @@ INSTALLED_APPS = [
     "clientes",
     "asistencias",
     "profesores",
-    "alumnos",
     "cursos",
     "facturas",
+    "alumnos",
+    "aulas",
+    "clases",
 ]
 
 # A sample logging configuration. The only tangible logging

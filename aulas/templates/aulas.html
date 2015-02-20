@@ -1,0 +1,28 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Lista de aulas" %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Lista de aulas" %}</h1>
+    <table class="table">
+		<thead>
+			<th>Nombre</th>
+			<th>Aforo</th>
+			<th>pdi</th>
+		</thead>
+    <tbody>
+    {% for aula in aulas_list %}
+    
+    <tr>
+		<td><a href="{% url 'aula_editar' aula.id %}">{{ aula }}</a></td>
+		<td>{{ aula.aforo }}</td>
+		<td>{{ aula.pdi }}</td>
+	</td>
+    {% endfor %}
+    </tbody>
+    </table>
+    <hr />
+    <a href="{% url 'aula_nueva' %}"><button>Nueva Aula</button></a>
+{% endblock %}

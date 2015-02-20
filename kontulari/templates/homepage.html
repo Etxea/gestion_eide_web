@@ -1,35 +1,25 @@
 {% extends "site_base.html" %}
-
 {% load i18n %}
-
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
-
 {% block body_class %}home{% endblock %}
-
 {% block body %}
 
 <div class="jumbotron">
-{% if user.is_authenticated %}
-
 <div class="col-md-12 col-xs-12">
-    <h3>Acciones Rápidas</h3>
     {% if request.user.is_staff %}
+    <h3>Acciones Rápidas</h3>
     <div class="btn-group">
         <!-- <a href="{% url 'asistencia_nueva' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>-->
-        <a href="{% url 'asistencias_lista' %}" class="btn btn-default btn-lg" >Asistencia</a>
-        <a href="{% url 'cliente_lista' %}" class="btn btn-default btn-lg" >Clientes</a>
+        <a href="{% url 'alumnos_lista' %}" class="btn btn-default btn-lg" >Asistencia</a>
+        <a href="{% url 'clases_lista' %}" class="btn btn-default btn-lg" >Clientes</a>
         <a href="{% url 'profesores_lista' %}" class="btn btn-default btn-lg" >Profesores</a>
-        <a href="{% url 'facturas_lista' %}" class="btn btn-default btn-lg" >Facturas</a>
+
     </div>
     {% else %}
-    <a href="{% url 'asistencia_nueva' %}" class="btn btn-primary btn-lg">Nueva Asistencia</a>
+        {% url "account_login" as login_url %}
+        <p> {% blocktrans %}Esta web no es de acceso publico, para entrar necesitas hacer <a href="{{ login_url }}" class="btn btn-default">Log In</a> .{% endblocktrans %}</p>
     {% endif %}
 </div>
-
-{% else %}
-{% url "account_login" as login_url %}
-    <p> {% blocktrans %}Esta web no es de acceso publico, para entrar necesitas hacer <a href="{{ login_url }}" class="btn btn-default">Log In</a> .{% endblocktrans %}</p>
-{% endif %}
 </div>
 
 <div class="jumbotron">
