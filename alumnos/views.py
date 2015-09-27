@@ -7,6 +7,9 @@ from models import *
 from forms import *
 
 
+class AlumnoListView(ListView):
+	model=Alumno
+	paginate_by = 50
 
 class AlumnoCreateView(CreateView):
     form_class = AlumnoCreateForm

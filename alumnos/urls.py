@@ -9,7 +9,7 @@ from views import *
 
 
 urlpatterns = patterns('',
-    url(r'^$', login_required(ListView.as_view(model=Alumno)),name="alumnos_lista"),
+    url(r'^$', login_required(AlumnoListView.as_view()),name="alumnos_lista"),
     url(r'nuevo$',AlumnoCreateView.as_view(), name="alumno_nuevo"),
     url(r'editar/(?P<pk>\d+)/$',AlumnoUpdateView.as_view(), name="alumno_editar"),
     url(r'borrar/(?P<pk>\d+)/$',AlumnoDeleteView.as_view(), name="alumno_borrar"),
