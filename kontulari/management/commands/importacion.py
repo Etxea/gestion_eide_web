@@ -40,12 +40,21 @@ class Command(BaseCommand):
             Curso_new.objects.all().delete()
             busqueda = Curso.select()
             self.stdout.write('Encontrados %d cursos'%busqueda.count())
-            #~ for curso in busqueda:
-                #~ c = Curso_new(\
-                    #~ 
-                #~ )
-                #~ c.save()
-            #~ 
+            for curso in busqueda:
+                c = Curso_new(\
+					nombre = curso.nombre,\
+					precio = curso.precio,\
+					##No obligatorios
+					examen = curso.examen,\
+					nivel = curso.nivel,\
+					nota_aprobado = curso.nota_aprobado,\
+					solo_examen_final = curso.solo_examen_final,\
+                )
+                c.save()
+                for libro in curso.libros:
+					c.libros.add(Libro_new.objects.filter(isbn=libro.isbn)[0])
+                
+            
             self.stdout.write('Importamos los alumnos, primero vamos a vaciar la BBDD')
             Alumno_new.objects.all().delete()
             busqueda = Alumno.select()

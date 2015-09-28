@@ -59,8 +59,8 @@ class Curso(models.Model):
     nombre = models.CharField(max_length=25,default="")
     precio = models.FloatField(default=100)
     ##No obligatorios
-    examen = models.CharField(max_length=25,default="")
-    nivel = models.CharField(max_length=25,default="")
+    examen = models.CharField(max_length=25,default="",blank=True,null=True)
+    nivel = models.CharField(max_length=25,default="",blank=True,null=True)
     libros = models.ManyToManyField('Libro')
     nota_aprobado = models.FloatField(default=50)
     solo_examen_final = models.BooleanField(default=False)
