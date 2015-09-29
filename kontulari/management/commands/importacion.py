@@ -6,6 +6,7 @@ from django.core.management.base import BaseCommand, CommandError
 from alumnos.models import Alumno as Alumno_new
 from alumnos.models import Libro as Libro_new
 from alumnos.models import Curso as Curso_new
+from alumnos.models import Grupo as Grupo_new
 
 from sqlobject import *
 from sqlobject.inheritance import InheritableSQLObject
@@ -54,7 +55,6 @@ class Command(BaseCommand):
                 for libro in curso.libros:
 					c.libros.add(Libro_new.objects.filter(isbn=libro.isbn)[0])
                 
-            
             self.stdout.write('Importamos los alumnos, primero vamos a vaciar la BBDD')
             Alumno_new.objects.all().delete()
             busqueda = Alumno.select()
@@ -79,3 +79,12 @@ class Command(BaseCommand):
                     cp = persona.cp,\
                     dni =persona.dni,)
                 a.save()
+                
+            self.stdout.write('Importamos los grupos, primero vamos a vaciar la BBDD')
+            Grupo_new.objects.all().delete()
+            busqueda = Grupo.select()
+            self.stdout.write('Encontrados %d grupos'%busqueda.count())
+            for grupo in busqueda:
+				g = Grupo_new(\
+				
+				)
