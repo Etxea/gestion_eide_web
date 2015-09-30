@@ -22,3 +22,8 @@ class AlumnoCreateForm(ModelForm):
     #     user_profile = Alumno(user=user,telefono1=self.cleaned_data['telefono1'],telefono2=self.cleaned_data['telefono2'])
     #     user_profile.save()
     #     return user, user_profile
+    
+class CursoCreateForm(ModelForm):
+    
+    class Meta:
+        model = Curso
