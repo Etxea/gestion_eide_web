@@ -1,0 +1,51 @@
+{% extends "site_base.html"%}
+{% load url from future %}
+{% load i18n %}
+
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-10 col-xs-12">
+        <h4>Listado de Alumnos</h4>
+     
+        <table class="table">
+            <thead>
+                <tr>
+                <td>ID</td>
+                <td>Apellido1</td>
+                <td>Apellido2</td>
+                <td>Nombre</td>
+                <td>Email</td>
+                <td>Telefono1</td>
+
+                <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for alumno in object_list %}
+            <tr>
+                <td><a href="{{alumno.get_absolute_url}}">{{ alumno.id }}</a></td>
+                <td>{{ alumno.apellido1 }}</td>
+                <td>{{ alumno.apellido2 }}</td>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.email }}</td>
+                <td>{{ alumno.telefono1 }}</td>
+
+                <td>
+                    <a href="{% url 'alumno_detalle' alumno.id %}"><span class="glyphicon glyphicon-search"></span></a>
+                    <a href="{% url 'alumno_editar' alumno.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{% url 'alumno_borrar' alumno.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2">
+    <h4>Acciones</h4>
+    {% include "pagination/pagination.html" %}
+    <a href="{% url 'alumno_nuevo' %}"><button>Nuevo</button></a>
+    </div>
+</div>
+{% endblock %}

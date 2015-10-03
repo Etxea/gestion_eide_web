@@ -141,14 +141,16 @@ INSTALLED_APPS = [
 
     # project
     "kontulari",
-    "clientes",
+    #"clientes",
     #"asistencias",
+    #"facturas",
     "profesores",
-    #"cursos",
-    "facturas",
+    "cursos",
+    
     "alumnos",
     "aulas",
     "clases",
+    "grupos",
 ]
 
 # A sample logging configuration. The only tangible logging

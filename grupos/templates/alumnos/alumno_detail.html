@@ -1,0 +1,35 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+
+    <h1>{% trans "Alumno" %} {{object.id}} <a href="{% url 'alumno_editar' object.id %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
+    
+    <table class="table">
+        <tr>
+            <td>Nombre</td><td>{{object.nombre}}</td>
+        </tr>
+        <tr>
+            <td>Apellido(s)</td><td>{{object.apellido1}}</td>
+        </tr>
+        <tr>
+            <td>Usuario</td><td>{{object.apellido2}}</td>
+        </tr>
+        <tr>
+            <td>Teléfono</td><td>{{object.telefono1}}</td>
+        </tr>
+        <tr>
+            <td>Teléfono2</td><td>{{object.telefono2}}</td>
+        </tr>
+        <tr>
+            <td>E-mail</td><td><a href="mailto:{{object.email}}">{{object.email}}</a></td>
+        </tr>
+        <tr>
+            <td>Cuenta</td><td>{{object.cuenta_bancaria}}</td>
+        </tr>
+        
+    </table>
+    
+
+{% endblock %}

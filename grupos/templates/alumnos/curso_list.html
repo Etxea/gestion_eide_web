@@ -1,0 +1,45 @@
+{% extends "site_base.html"%}
+{% load url from future %}
+{% load i18n %}
+
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-10 col-xs-12">
+        <h4>Listado de Cursos</h4>
+     
+        <table class="table">
+            <thead>
+                <tr>
+                <td>ID</td>
+                <td>Nombre</td>
+                <td>Precio</td>
+                <td>Nivel</td>
+                <td>Libros</td>
+                <td>Nota Aprobado</td>
+                <td>SOlo examen final</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for curso in object_list %}
+            <tr>
+                <td><a href="{{curso.get_absolute_url}}">{{ curso.id }}</a></td>
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.precio }}</td>
+                <td>{{ curso.Nivel }}</td>
+                <td>{{ curso.libros }}</td>
+                <td>{{ curso.nota_aprobado }}</td>
+                <td>{{ curso.solo_examen_final }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2">
+    <h4>Acciones</h4>
+    {% include "pagination/pagination.html" %}
+    <a href="{% url 'curso_nuevo' %}"><button>Nuevo</button></a>
+    </div>
+</div>
+{% endblock %}
